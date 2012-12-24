@@ -1,5 +1,28 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  hello: Hello world
+  activerecord:
+    model:
+      user: user
+  helpers:
+    submit:
+      sessions_path:
+        submit: Log In
+      user:
+        create: Sign Up
+      create: Create a %{model}
+      update: Confirm changes to %{model}
+  form:
+    email: email
+    pw: password
+    pwconf: password confirmation
+  users:
+    new:
+      headline: Sign Up
+  sessions:
+    new:
+      headline: Log In
+  login:
+    submit_button: Log In
+  loggedin: You are now logged in
+  loggedout: You are now logged out
+  logout: Log out!

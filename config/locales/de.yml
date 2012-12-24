@@ -1,0 +1,9 @@
+de:
+  form:
+    email: !!null 
+    pw: !!null 
+    pwconf: !!null 
+  users:
+    new:
+      headline: !!null 
+  loggedin: !!null 
