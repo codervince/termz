@@ -2,34 +2,42 @@
 <html>
 <head>
   <title>Termz | <%= yield(:title) %> </title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= render 'layouts/stylesheets' %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+   <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
 </head>
+
+
 <body>
-	<% if flash[:notice] %>
-		<div id="notice" class="message">
-			<%= flash[:notice] %>
-    	</div>
-  	<% elsif flash[:alert] %>
-  		<div id="alert" class="message">
-			<%= flash[:alert] %>
-    	</div>
-  	<% end %>
 
-<div id="user_nav">
-  <% if current_user %>
-    Logged in as <%= current_user.email %>
-    <%= link_to "Log Out", log_out_path %>
-
-  <% else %>
-    <%= link_to "Sign up", sign_up_path %> or 
-    <%= link_to "Log in", log_in_path %>
-  <% end %>
-</div>
+ <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container">
+          <%= link_to "TERMZ", root_path, id: "logo" %>
 
 
-<%= yield %>
+            <%= render 'layouts/headernav' %>
+
+          
+        </div>
+      </div>
+    </header>
+
+    <div id="flashcontent">
+
+      <%= render 'layouts/flashcontent' %>
+
+    </div> 
+
+
+  <div class="container">
+      <%= yield %>
+    </div>
 
 </body>
 </html>

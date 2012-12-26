@@ -9,8 +9,12 @@
 <% else %>
 
 
+		<div class="center hero-unit">
+					<%= render  :file => "pages/welcome_en.html" %>
 
-		<%= render  :file => "pages/welcome_en.html" %>
+					<p><%= button_to t(:browseforterms, :default => "Browse for terms!"), '#', method: :post, class: "btn btn-large btn-primary" %></p>
+
+		</div>
 
 
 <% end %>

@@ -12,7 +12,7 @@ Termz::Application.routes.draw do
 
   get "users/new"
   get "sign_up" => "users#new", :as => "sign_up"
-  root :to => "users#new"
+  root :to => "pages#home"
   resources :users
   resources :sessions
 
