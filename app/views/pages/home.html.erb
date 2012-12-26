@@ -1,2 +1,16 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<% provide(:title, "Home") %>
+
+<% if current_user %>
+	
+	SEARCH BOX
+
+
+			
+<% else %>
+
+
+
+		<%= render  :file => "pages/welcome_en.html" %>
+
+
+<% end %>
