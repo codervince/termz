@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
                 :length => { :maximum => 50 },
                 :uniqueness => {:case_sensitive => false }
   #this also creates a virtual attr automatically called password_confirmation!!
-  validates :password, :presence => true, :length => { minimum: 6 }, :on => :create
+  validates :password, :presence => true, :length => { minimum: 5 }, :on => :create
   validates :password_confirmation, :presence => true, :on => :create
   # validates_presence_of :password, :on => :create
   

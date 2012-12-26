@@ -11,11 +11,49 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226084323) do
+ActiveRecord::Schema.define(:version => 20121226161124) do
+
+  create_table "approvals", :force => true do |t|
+    t.string  "name"
+    t.integer "ranking"
+  end
+
+  create_table "domains", :force => true do |t|
+    t.string "name"
+    t.string "code"
+    t.string "image_url"
+  end
 
   create_table "languages", :force => true do |t|
     t.string "name"
     t.string "iso_code"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.integer  "source_lang_id"
+    t.string   "access_token"
+    t.integer  "owner_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "sources", :force => true do |t|
+    t.string   "url"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "translations", :force => true do |t|
+    t.integer  "source_lang_id"
+    t.string   "source_content"
+    t.integer  "target_lang_id"
+    t.string   "target_content"
+    t.integer  "domain_id"
+    t.integer  "owner_id"
+    t.integer  "approval_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|

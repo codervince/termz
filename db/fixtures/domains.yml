@@ -1,0 +1,15 @@
+comp:
+   id: 1
+   code: MECHENG
+   name: Mechanical Engineering
+   image_url: assets/images/mecheng.png
+   
+eleceng:
+   id: 2
+   code: ELECENG
+   name: Electrical Engineering
+   
+gentech:
+   id: 3
+   code: AUTOMOTIVE
+   name: Automotive Engineering
