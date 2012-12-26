@@ -14,6 +14,7 @@ en:
   form:
     email: email
     pw: password
+    name: nickname
     pwconf: password confirmation
     invalid: Form is invalid
   users:

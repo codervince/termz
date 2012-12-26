@@ -4,16 +4,22 @@ class User < ActiveRecord::Base
 
   attr_accessible :email, :password, :password_confirmation, :locale_id, :name
 
-
   attr_accessor :password
 
   before_save :encrypt_password
+  before_save { |user| user.email = email.downcase }
 
+  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  
+  validates     :email, :presence => true,
+                :format => { :with => email_regex },
+                :length => { :maximum => 50 },
+                :uniqueness => {:case_sensitive => false }
 
+  #this also creates a virtual attr automatically called password_confirmation!!
   validates_confirmation_of :password
-  validates_presence_of :password, :on => :create
-  validates_presence_of :email
-  validates_uniqueness_of :email
+  validates_presence_of :password, :on => :create, :length => { minimum: 6 }
+
 
 
   def encrypt_password
