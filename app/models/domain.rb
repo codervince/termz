@@ -3,7 +3,7 @@ class Domain < ActiveRecord::Base
 
 
   # a translation has one domain (but same sc tc with different domain is a different translation!)
-
+  belongs_to :translation
 
 
 end

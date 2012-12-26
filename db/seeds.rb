@@ -12,7 +12,7 @@ Domain.delete_all
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "languages")
 ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "domains")
 User.delete_all
-
+Approval.delete_all
 
 
 User.create!(
@@ -29,4 +29,20 @@ User.create!(
     :password_confirmation => "admin",
     :locale_id => 1,
     :name => "Klaus"
+    )
+
+
+Approval.create!(
+    :name => "Approved by intermediary",
+    :ranking => 2
+    )
+
+Approval.create!(
+    :name => "Approved by end customer",
+    :ranking => 1
+    )
+
+Approval.create!(
+    :name => "Approved by translator number 1",
+    :ranking => 3
     )

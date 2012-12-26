@@ -25,6 +25,10 @@ class User < ActiveRecord::Base
  #end validations from 12
 
 
+ has_many :translations,  :foreign_key => "owner_id" 
+
+
+
   def encrypt_password
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt

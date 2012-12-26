@@ -26,7 +26,13 @@ Termz::Application.routes.draw do
   resources :users
   resources :sessions
   resources :domains
+
+
   resources :projects
+
+  #translations only within context of projects - nest!
+  resources :translations
+
    
   # The priority is based upon order of creation:
   # first created -> highest priority.
