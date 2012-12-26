@@ -29,4 +29,6 @@ en:
   loggedout: You are now logged out
   logout: Log out!
   guest: Guest
-  browseforterms: Browse Public Terms 
+  browseforterms: Browse Public Terms
+  signedup: Signed Up!
+  incorrectemailpwd: Invalid email or password

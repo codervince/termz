@@ -1,4 +1,7 @@
 Termz::Application.routes.draw do
+
+  root to: 'pages#home'
+  
   get "pages/home"
 
   get "pages/about"
@@ -12,7 +15,9 @@ Termz::Application.routes.draw do
 
   get "users/new"
   get "sign_up" => "users#new", :as => "sign_up"
-  root :to => "pages#home"
+
+
+  match "pages/search", :as => :search
   resources :users
   resources :sessions
 

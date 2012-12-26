@@ -5,9 +5,11 @@ class UsersController < ApplicationController
 
 
  def create 
- 	@user = User.new(params[:user])
+ 	# @user = User.new(params[:user])
+ 	 @user = params[:user] ? User.new(params[:user]) : User.new_guest
  	 if @user.save
-      redirect_to root_url, :notice => "Signed up!"
+ 	  flash[:notice] =  t(:signedup, :default => "Signed up!")
+      redirect_to root_url 
      else
       render "new"
     end

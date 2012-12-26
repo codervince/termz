@@ -11,8 +11,6 @@
     <![endif]-->
 
 </head>
-
-
 <body>
 
  <header class="navbar navbar-fixed-top navbar-inverse">
@@ -26,7 +24,9 @@
           
         </div>
       </div>
-    </header>
+  </header>
+
+  <div class="container">
 
     <div id="flashcontent">
 
@@ -35,9 +35,11 @@
     </div> 
 
 
-  <div class="container">
       <%= yield %>
-    </div>
+    
+      <%= render 'layouts/footer' %>
+      <%= debug(params) if Rails.env.development? %>
 
+</div>
 </body>
 </html>
