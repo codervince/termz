@@ -5,3 +5,24 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+require 'active_record/fixtures'
+# languages will be from a language file?? #see ascii 179
+ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "languages")
+
+User.delete_all
+
+
+User.create!(
+    :email => "publicvince102@gmail.com",
+    :password => "admin",
+    :locale_id => 2,
+    :name => "Vince"
+    )
+
+User.create!(
+    :email => "publicvince101@gmail.com",
+    :password => "admin",
+    :locale_id => 1,
+    :name => "Klaus"
+    )

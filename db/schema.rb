@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121224173126) do
+ActiveRecord::Schema.define(:version => 20121226084323) do
+
+  create_table "languages", :force => true do |t|
+    t.string "name"
+    t.string "iso_code"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -19,6 +24,9 @@ ActiveRecord::Schema.define(:version => 20121224173126) do
     t.string   "password_salt"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.boolean  "guest"
+    t.integer  "locale_id"
+    t.string   "name"
   end
 
 end

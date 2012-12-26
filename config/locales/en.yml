@@ -15,6 +15,7 @@ en:
     email: email
     pw: password
     pwconf: password confirmation
+    invalid: Form is invalid
   users:
     new:
       headline: Sign Up
@@ -26,3 +27,4 @@ en:
   loggedin: You are now logged in
   loggedout: You are now logged out
   logout: Log out!
+  guest: Guest

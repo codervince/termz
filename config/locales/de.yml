@@ -3,7 +3,23 @@ de:
     email: !!null 
     pw: !!null 
     pwconf: !!null 
+    invalid: !!null 
   users:
     new:
       headline: !!null 
   loggedin: !!null 
+  activerecord:
+    model:
+      user: !!null 
+  guest: !!null 
+  helpers:
+    submit:
+      sessions_path:
+        submit: !!null 
+  loggedout: !!null 
+  login:
+    submit_button: !!null 
+  logout: !!null 
+  sessions:
+    new:
+      headline: !!null 

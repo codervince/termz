@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
 #In a production application we’d want to add more validation in the User model such as validations for the password length and the email format.
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :locale_id, :name
+
 
   attr_accessor :password
 
