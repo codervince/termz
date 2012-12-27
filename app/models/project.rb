@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id             :integer          not null, primary key
+#  name           :string(255)
+#  source_lang_id :integer
+#  access_token   :string(255)
+#  owner_id       :integer
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#
+
 class Project < ActiveRecord::Base
   attr_accessible :access_token, :name, :owner_id, :source_lang_id
 

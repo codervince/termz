@@ -1,0 +1,17 @@
+<h1>Translation</h1>
+
+<p>
+  <b>SRCE</b><br>
+  <%= @translation.source_content %>
+</p>
+
+<p>
+  <b>TAR</b><br>
+  <%= @translation.target_content %>
+</p>
+
+<div class="form-actions">
+  <%= link_to 'Back', translations_path, :class => 'btn' %>
+  <%= link_to 'Edit', edit_translation_path(@translation), :class => 'btn' %>
+  <%= link_to 'Delete', translation_path(@translation), :method => 'delete', :confirm => 'Are you sure?', :class => 'btn btn-danger' %>
+</div>

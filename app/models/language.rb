@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: languages
+#
+#  id       :integer          not null, primary key
+#  name     :string(255)
+#  iso_code :string(255)
+#
+
 class Language < ActiveRecord::Base
 		
 

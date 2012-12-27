@@ -28,3 +28,6 @@ de:
   browseforterms: !!null 
   signedup: !!null 
   welcome: !!null 
+  simple_form:
+    required:
+      html: !!null 

@@ -1,0 +1,35 @@
+<h1>Translations</h1>
+
+SORTABLE SEARCHABLE FORM NEEDED HERE!
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Source Lang</th>
+      <th>Source </th>
+      <th>Target Lang</th>
+      <th>Target</th>
+      <th>Domain</th>
+    <th>Created at</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @translations.each do |translation| %>
+      <tr>
+        <td><%= translation.source_lang_id %></td>
+        <td><%= link_to translation.source_content, translation_path(translation) %></td>
+        <td><%= translation.target_lang_id %></td>
+        <td><%= link_to translation.target_content, translation_path(translation) %></td>
+        <td><%= translation.domain_id %></td>
+        <td><%= translation.created_at %></td>
+        <td>
+          <%= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', translation_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New', new_translation_path, :class => 'btn btn-primary' %>
+<%= link_to 'Batch Entry', '#', :class => 'btn btn-primary' %>

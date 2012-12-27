@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id            :integer          not null, primary key
+#  email         :string(255)
+#  password_hash :string(255)
+#  password_salt :string(255)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  guest         :boolean
+#  locale_id     :integer
+#  name          :string(255)
+#
+
 class User < ActiveRecord::Base
 
 #In a production application we’d want to add more validation in the User model such as validations for the password length and the email format.

@@ -22,6 +22,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 gem 'jquery-rails'
 
 gem 'simple_form'
+gem 'annotate'
 
 #this was taken from HARTL 
 group :development, :test do

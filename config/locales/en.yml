@@ -34,3 +34,6 @@ en:
   incorrectemailpwd: Invalid email or password
   welcome: Welcome
   signup: Sign Up
+  simple_form:
+    required:
+      html: <abbr title="required">*</abbr>
