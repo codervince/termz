@@ -13,7 +13,7 @@ class Translation < ActiveRecord::Base
 
  	has_one :domain
 
- 	# has_many :authorities
- 	# has_many :sources, :through => :authorities
+ 	has_many :authorities
+ 	has_many :sources, :through => :authorities
 
 end
