@@ -21,6 +21,7 @@ gem 'bootstrap-will_paginate', '0.0.6'
 
 gem 'jquery-rails'
 
+gem 'simple_form'
 
 #this was taken from HARTL 
 group :development, :test do
@@ -63,7 +64,7 @@ end
 #this was taken from HARTL 
 group :test do
   gem 'capybara', '1.1.2'
-  gem 'factory_girl_rails', '4.1.0'
+  gem 'factory_girl_rails'
   gem 'cucumber-rails', '1.2.1', :require => false
   gem 'database_cleaner', '0.7.0'  
   # gem 'launchy', '2.1.0'

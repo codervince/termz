@@ -4,6 +4,7 @@ de:
     pw: !!null 
     pwconf: !!null 
     invalid: !!null 
+    name: !!null 
   users:
     new:
       headline: !!null 
@@ -24,3 +25,6 @@ de:
     new:
       headline: !!null 
   incorrectemailpwd: !!null 
+  browseforterms: !!null 
+  signedup: !!null 
+  welcome: !!null 

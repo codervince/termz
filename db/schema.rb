@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226162601) do
+ActiveRecord::Schema.define(:version => 20121227080613) do
 
   create_table "approvals", :force => true do |t|
     t.string  "name"
@@ -67,5 +67,7 @@ ActiveRecord::Schema.define(:version => 20121226162601) do
     t.integer  "locale_id"
     t.string   "name"
   end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
 
 end
