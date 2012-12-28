@@ -57,8 +57,8 @@ class Translation < ActiveRecord::Base
  			#rtns array of hashes with new 
  			#domain based on filename format DOMAIN_
  			domain_code = get_domain_code(file.original_filename) 			
- 				domain_id = Domain.find_by_code(domain_code) 
- 				trans = SmarterCSV.process(file.path, :user_provided_headers => [:source_content, :target_content, :source]) do |arr|
+ 				domain_id = Domain.find_by_code(domain_code).id 
+ 				trans = SmarterCSV.process(file.path, :user_provided_headers => [:source_content, :target_content, :url]) do |arr|
  								trans_id = Translation.create(
  											arr.first.slice(:source_content, :target_content).merge(
  												{  :source_lang_id => source_lang_id, 
@@ -66,16 +66,17 @@ class Translation < ActiveRecord::Base
  												   :domain_id => domain_id
  												}	
  												)).id
- 								source_id = Source.find_or_create_by_url(arr.first.slice(:source)).id
+
+ 								source_id = Source.create(arr.first.slice(:url)).id
  				#create translation source association in Authority
  								Authority.create(:translation_id => trans_id, :source_id => source_id)
  				 end
  	
+
 		
  			#for console work:
- 			# trans = SmarterCSV.process('tmp/LIEBHERR.csv', :user_provided_headers => [:source_content, :target_content, :source]) do |arr| 
- 			# 	puts arr.first.slice(:source_content, :target_content).inspect end	
- 			
+ 			# trans = SmarterCSV.process('tmp/LIEBHERR.csv', :user_provided_headers => [:source_content, :target_content, :source]) do |arr| puts arr.first.slice(:source).inspect end	
+ 			# trans = SmarterCSV.process('tmp/LIEBHERR.csv', :user_provided_headers => [:source_content, :target_content, :url]) do |arr| Source.create( arr.first.slice(:url)) end
  		else #for case block
  			raise "Unknown file type: #{file.original_filename}"	
  		end	

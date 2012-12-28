@@ -2,26 +2,32 @@
 
 SORTABLE SEARCHABLE FORM NEEDED HERE!
 
+TABLE NEEDS TO RESIZE TO CONTENT
+de  source_content
+en  target_content
+domain created_at [owner_id] 
+COLORED for isTerm
+COLORED PUBLIC?
+
+SOURCE- iterate over all sources for translation_id
+if it looks like a link, put in a link tag
+
+
 <table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Source Lang</th>
-      <th>Source </th>
-      <th>Target Lang</th>
-      <th>Target</th>
-      <th>Domain</th>
-    <th>Created at</th>
-    </tr>
-  </thead>
+
   <tbody>
     <% @translations.each do |translation| %>
       <tr>
-        <td><%= translation.source_lang_id %></td>
-        <td><%= link_to translation.source_content, translation_path(translation) %></td>
-        <td><%= translation.target_lang_id %></td>
-        <td><%= link_to translation.target_content, translation_path(translation) %></td>
-        <td><%= translation.domain_id %></td>
-        <td><%= translation.created_at %></td>
+        <td><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %>
+        <%= link_to translation.source_content, translation_path(translation) %></td>
+    
+        <td><%= Language.find_by_id(translation.target_lang_id).iso_code if not translation.target_lang_id.nil? %>
+        <%= link_to translation.target_content, translation_path(translation) %></td>
+
+        <td><%=  Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %>
+        <%= translation.created_at %><br/>
+        <%= Source.find_by_id(Authority.find_by_translation_id(translation.id).source_id).url %>
+      </td>
         <td>
           <%= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-mini' %>
           <%= link_to 'Destroy', translation_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
