@@ -35,4 +35,71 @@ class Translation < ActiveRecord::Base
  	has_many :authorities
  	has_many :sources, :through => :authorities
 
+ 	## IMPROVE TO ADD owner_id and project_id
+ 	def self.import(file)
+
+ 		#CSV has headers: source_lang, target_language, source
+ 		#Take source_language look up id in Language table and assign to source_lang_id and same for target
+ 		#source is ; delimited.. add to Source iD 
+ 		# finally go to Associates table add new Translation ID to source ID
+ 		case File.extname(file.original_filename)
+ 		when ".csv"
+ 			#get header information as array 
+ 			#file.path
+ 			header_flds = CSV.read(file.path)[0]
+ 			if header_flds.count == 3
+ 				source_lang_id = Language.find_by_iso_code(correct_iso(header_flds[0])).id 
+ 				target_lang_id = Language.find_by_iso_code(correct_iso(header_flds[1])).id
+ 				# source_id = Source.find_or_create_by_url(header_flds[2]).id 	
+ 			else
+ 				raise "Please check formatting"
+ 			end	
+ 			#rtns array of hashes with new 
+ 			#domain based on filename format DOMAIN_
+ 			domain_code = get_domain_code(file.original_filename) 			
+ 				domain_id = Domain.find_by_code(domain_code) 
+ 				trans = SmarterCSV.process(file.path, :user_provided_headers => [:source_content, :target_content, :source]) do |arr|
+ 								trans_id = Translation.create(
+ 											arr.first.slice(:source_content, :target_content).merge(
+ 												{  :source_lang_id => source_lang_id, 
+ 												   :target_lang_id => target_lang_id, 
+ 												   :domain_id => domain_id
+ 												}	
+ 												)).id
+ 								source_id = Source.find_or_create_by_url(arr.first.slice(:source)).id
+ 				#create translation source association in Authority
+ 								Authority.create(:translation_id => trans_id, :source_id => source_id)
+ 				 end
+ 	
+		
+ 			#for console work:
+ 			# trans = SmarterCSV.process('tmp/LIEBHERR.csv', :user_provided_headers => [:source_content, :target_content, :source]) do |arr| 
+ 			# 	puts arr.first.slice(:source_content, :target_content).inspect end	
+ 			
+ 		else #for case block
+ 			raise "Unknown file type: #{file.original_filename}"	
+ 		end	
+
+ 	end 	
+
+ 	def self.correct_iso(field)
+ 		if field.size == 5
+ 			field[2] = "-"
+ 			return field
+ 		else field.size == 2
+ 			#basic ISO code
+ 			return field
+ 		end	
+ 	end	
+
+ 	def self.get_domain_code(filename)
+ 		#filename must have an underscore starts with domain as one word
+ 		if filename.include?("_")
+ 			#looks for first _
+ 			return filename.slice(0, filename.index('_') ).upcase
+ 		else
+ 			raise "Domain error"
+ 		end		
+ 	end	
+ 	
 end

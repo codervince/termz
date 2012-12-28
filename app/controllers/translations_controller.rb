@@ -1,5 +1,15 @@
 class TranslationsController < ApplicationController
 
+def import
+  #use carrierwave for more permanent storage e.g. TMX
+  #class action (import) in model to handle behavior
+  Translation.import(params[:file])
+  redirect_to translations_path, notice: "Translations imported"
+
+end
+
+
+
 def index
  @translations = Translation.all
 end
@@ -40,4 +50,5 @@ def new
       format.json { render json: @translation }
     end
 end
+
 end

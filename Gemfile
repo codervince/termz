@@ -24,6 +24,8 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'annotate'
 
+gem 'smarter_csv'
+
 #this was taken from HARTL 
 group :development, :test do
   gem 'rspec-rails', '2.11.0'

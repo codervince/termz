@@ -31,7 +31,9 @@ Termz::Application.routes.draw do
   resources :projects
 
   #translations only within context of projects - nest!
-  resources :translations
+  resources :translations do
+    collection { post :import }
+ end
 
    
   # The priority is based upon order of creation:
