@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121229073059) do
+ActiveRecord::Schema.define(:version => 20121229170606) do
 
   create_table "approvals", :force => true do |t|
     t.string  "name"
@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(:version => 20121229073059) do
     t.string   "name"
     t.integer  "source_lang_id"
     t.string   "access_token"
-    t.integer  "owner_id"
+    t.integer  "user_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

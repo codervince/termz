@@ -26,6 +26,11 @@ describe User do
   it { should respond_to(:name) }
   it { should respond_to(:email) }
 
+  #testing user associations
+  it { should respond_to(:projects) }
+
+
+
   #responds to @user.valid? 
   it { should be_valid }
 
@@ -101,6 +106,35 @@ end
 
 
 #TEST FOR AUTHENTICATE?
+
+
+describe "project associations" do
+
+    before { @user.save }
+
+    #return projects in order of most recent first
+    let!(:older_project) do 
+      FactoryGirl.create(:project, user: @user, created_at: 1.day.ago)
+    end
+    let!(:newer_project) do
+      FactoryGirl.create(:project, user: @user, created_at: 1.hour.ago)
+    end
+
+    it "should have the right microposts in the right order" do
+        @user.projects.should == [newer_project, older_project]
+    end
+    
+    it "should destroy associated projects" do
+      #projects get destroyed when users are destroyed [translations go into the public domain!]
+      #deep copy
+      projects = @user.projects.dup
+      @user.destroy
+      projects.should_not be_empty
+      projects.each do |project|
+        Project.find_by_id(project.id).should be_nil
+      end
+    end
+  end
 
 
 end

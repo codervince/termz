@@ -13,6 +13,9 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  project_id     :integer
+#  is_public      :boolean          default(TRUE)
+#  is_term        :boolean          default(TRUE)
+#  source_id      :integer
 #
 
 class Translation < ActiveRecord::Base

@@ -47,8 +47,10 @@ class User < ActiveRecord::Base
  #end validations from 12
 
 
- has_many :translations,  :foreign_key => "owner_id" 
- has_many :projects,  :foreign_key => "owner_id"
+ has_many :translations,  :foreign_key => "owner_id"
+
+ 
+ has_many :projects, dependent: :destroy
 
   belongs_to :locale, :class_name => 'Language'
 
