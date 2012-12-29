@@ -3,36 +3,52 @@
 
 <h1><%= t ".headline", default: "Sign Up" %></h1>
 
-<!-- to add: select locale , name 
+<!-- to add: select locale 
 use formastic once all models are in place -->
 
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2><%= t "form.invalid", default: "Form is invalid" %></h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<%= simple_form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+      <%= f.input :email %>
+      <%= f.input :name %>
+      <%= f.input :password %>
+      <%= f.input :password_confirmation %>
+      <%= f.association :locale, :label => 'Your preferred language', :as => :radio_buttons %>
+      <%= f.error :base %>
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', root_path, :class => 'btn' %>
     </div>
-  <% end %>
-  <p>
-    <%= f.label t "form.email", default: "email"  %><br />
-    <%= f.text_field :email %>
-  </p>
-
-    <p>
-    <%= f.label t "form.name", default: "nickname"  %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label t "form.pw", default: "password" %><br />
-    <%= f.password_field :password %>
-  </p>
-  <p>
-    <%= f.label t "form.pwconf", default: "password confirmation" %><br />
-    <%= f.password_field :password_confirmation %>
-  </p>
-  <p class="button"><%= f.submit %></p>
+  </fieldset>
 <% end %>
+
+
+<!-- # <%= form_for @user do |f| %>
+#   <% if @user.errors.any? %>
+#     <div class="error_messages">
+#       <h2><%= t "form.invalid", default: "Form is invalid" %></h2>
+#       <ul>
+#         <% for message in @user.errors.full_messages %>
+#           <li><%= message %></li>
+#         <% end %>
+#       </ul>
+#     </div>
+#   <% end %>
+#   <p>
+#     <%= f.label t "form.email", default: "email"  %><br />
+#     <%= f.text_field :email %>
+#   </p>
+
+#     <p>
+#     <%= f.label t "form.name", default: "nickname"  %><br />
+#     <%= f.text_field :name %>
+#   </p>
+#   <p>
+#     <%= f.label t "form.pw", default: "password" %><br />
+#     <%= f.password_field :password %>
+#   </p>
+#   <p>
+#     <%= f.label t "form.pwconf", default: "password confirmation" %><br />
+#     <%= f.password_field :password_confirmation %>
+#   </p>
+#   <p class="button"><%= f.submit %></p>
+# <% end %> -->

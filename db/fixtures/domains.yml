@@ -9,7 +9,11 @@ eleceng:
    code: ELECENG
    name: Electrical Engineering
    
-gentech:
+auto:
    id: 3
    code: AUTOMOTIVE
    name: Automotive Engineering
+auto:
+   id: 4
+   code: PHARMA
+   name: Pharmaceuticals 

@@ -26,7 +26,8 @@ if it looks like a link, put in a link tag
 
         <td><%=  Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %>
         <%= translation.created_at %><br/>
-        <%= Source.find_by_id(Authority.find_by_translation_id(translation.id).source_id).url %>
+        <!-- TODO: if source url is a url, show as a link-->
+        <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %>
       </td>
         <td>
           <%= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-mini' %>

@@ -9,6 +9,7 @@
     <%= f.association :domain, :as => :radio_buttons %>
 <!--  	<%= f.input :owner, :as => :hidden %>
 	<%= f.input :project, :as => :hidden %> -->
+    <%= f.association :source, :label_method => :url, :placeholder => 'make this a look ahead field - select or input', :prompt => 'Choose an existing source' %>
   <%= f.error :base %>
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

@@ -50,6 +50,8 @@ class User < ActiveRecord::Base
  has_many :translations,  :foreign_key => "owner_id" 
  has_many :projects,  :foreign_key => "owner_id"
 
+  belongs_to :locale, :class_name => 'Language'
+
 
   def encrypt_password
     if password.present?

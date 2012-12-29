@@ -16,7 +16,7 @@
 #
 
 class Translation < ActiveRecord::Base
-  attr_accessible :approval_id, :domain_id, :owner, :project, :source_content, :source_lang_id, :target_content, :target_lang_id
+  attr_accessible :approval_id, :domain_id, :owner, :project, :source_content, :source_lang_id, :target_content, :target_lang_id, :source_id
 
   validates_presence_of :source_content, :source_lang_id, :target_content, :target_lang_id, :domain_id
 
@@ -32,8 +32,7 @@ class Translation < ActiveRecord::Base
  	belongs_to :approval
 	belongs_to :domain
 
- 	has_many :authorities
- 	has_many :sources, :through => :authorities
+ 	belongs_to :source
 
  	## IMPROVE TO ADD owner_id and project_id
  	def self.import(file)
@@ -59,17 +58,19 @@ class Translation < ActiveRecord::Base
  			domain_code = get_domain_code(file.original_filename) 			
  				domain_id = Domain.find_by_code(domain_code).id 
  				trans = SmarterCSV.process(file.path, :user_provided_headers => [:source_content, :target_content, :url]) do |arr|
+ 								#TODO: do not create source if blank url 
+ 								source_id = Source.create(arr.first.slice(:url)).id if arr.first.has_value?(:url)
  								trans_id = Translation.create(
  											arr.first.slice(:source_content, :target_content).merge(
  												{  :source_lang_id => source_lang_id, 
  												   :target_lang_id => target_lang_id, 
- 												   :domain_id => domain_id
+ 												   :domain_id => domain_id,
+ 												   :source_id => source_id
  												}	
  												)).id
 
- 								source_id = Source.create(arr.first.slice(:url)).id
- 				#create translation source association in Authority
- 								Authority.create(:translation_id => trans_id, :source_id => source_id)
+ 								
+ 								
  				 end
  	
 

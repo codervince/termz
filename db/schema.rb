@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121227162342) do
+ActiveRecord::Schema.define(:version => 20121229073059) do
 
   create_table "approvals", :force => true do |t|
     t.string  "name"
@@ -59,9 +59,12 @@ ActiveRecord::Schema.define(:version => 20121227162342) do
     t.integer  "domain_id"
     t.integer  "owner_id"
     t.integer  "approval_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.integer  "project_id"
+    t.boolean  "is_public",      :default => true
+    t.boolean  "is_term",        :default => true
+    t.integer  "source_id"
   end
 
   create_table "users", :force => true do |t|

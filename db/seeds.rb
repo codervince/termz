@@ -14,7 +14,6 @@ ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "domains")
 User.delete_all
 Approval.delete_all
 
-
 User.create!(
     :email => "publicvince102@gmail.com",
     :password => "admin",
@@ -45,4 +44,12 @@ Approval.create!(
 Approval.create!(
     :name => "Approved by translator number 1",
     :ranking => 3
+    )
+
+Source.create!(
+    :url => "GOOGLE SEARCH"
+    )
+
+Source.create!(
+    :url => "OWN RESOURCES"
     )

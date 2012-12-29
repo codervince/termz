@@ -11,7 +11,7 @@ end
 
 
 def index
- @translations = Translation.all
+ @translations = Translation.order('created_at desc')
 end
 
 def edit
@@ -24,7 +24,7 @@ end
 
     respond_to do |format|
       if @translation.update_attributes(params[:translation])
-        format.html { redirect_to @translation, notice: 'Product was successfully updated.' }
+        format.html { redirect_to @translation, notice: 'Translation was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -59,7 +59,7 @@ def create
   #process information from checkbox
 
   if @translation.save
-    flash[:notice] = "{@translation.source_content} was successfully created"
+    flash[:notice] = "Translation was successfully created"
     redirect_to translations_path
   else
     render 'new'
