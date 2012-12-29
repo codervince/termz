@@ -44,11 +44,26 @@ end
 
 def new
  @translation = Translation.new
-
+ @languages = Language.all(:order => 'iso_code')
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @translation }
     end
+end
+
+
+#version 1 - 1 domain per translation
+#version 2 - mutliselect to create X translations of same content, one for each domain
+def create
+  @translation = Translation.new(params[:translation])
+  #process information from checkbox
+
+  if @translation.save
+    flash[:notice] = "{@translation.source_content} was successfully created"
+    redirect_to translations_path
+  else
+    render 'new'
+  end
 end
 
 end

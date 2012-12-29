@@ -31,3 +31,4 @@ de:
   simple_form:
     required:
       html: !!null 
+  signup: !!null 

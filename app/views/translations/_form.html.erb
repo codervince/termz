@@ -2,14 +2,14 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Translation</legend>
 
-    <%= f.association :source_lang %>
+    <%= f.association :source_lang, :collection => @languages, :include_blank => false, :label_method => :iso_code %>
     <%= f.input :source_content %>
-    <%= f.association :target_lang %>
+    <%= f.association :target_lang, :label_method => :iso_code %>
     <%= f.input :target_content %>
-    <%= f.association :domain,  :as => :check_boxes %>
+    <%= f.association :domain, :as => :radio_buttons %>
 <!--  	<%= f.input :owner, :as => :hidden %>
 	<%= f.input :project, :as => :hidden %> -->
-
+  <%= f.error :base %>
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', translations_path, :class => 'btn' %>
