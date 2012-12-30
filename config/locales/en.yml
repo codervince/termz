@@ -28,6 +28,7 @@ en:
   loggedin: You are now logged in
   loggedout: You are now logged out
   logout: Log out!
+  login.submit_button: Log In
   guest: Guest
   browseforterms: Browse Public Terms
   signedup: Signed Up!
