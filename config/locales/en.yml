@@ -29,6 +29,7 @@ en:
   loggedout: You are now logged out
   logout: Log out!
   login.submit_button: Log In
+  newuser: New user?
   guest: Guest
   browseforterms: Browse Public Terms
   signedup: Signed Up!

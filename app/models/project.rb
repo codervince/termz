@@ -12,7 +12,11 @@
 #
 
 class Project < ActiveRecord::Base
-  attr_accessible :access_token, :name, :source_lang_id
+
+  attr_accessible :name, :source_lang_id
+
+  before_save :generate_access_token
+
 
   validates :user_id, presence: true
 
@@ -25,5 +29,17 @@ class Project < ActiveRecord::Base
 
 
   default_scope order: 'projects.created_at DESC' 
+
+
+	private
+  
+     def generate_access_token
+       #also handles duplicates, self because refers to group not instance var
+       begin
+         self.access_token = SecureRandom.urlsafe_base64(5)
+       end while self.class.exists?(access_token: access_token)
+    end
+
+
 
 end

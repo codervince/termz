@@ -23,6 +23,7 @@ end
 
  def show
     @user = User.find(params[:id])
+    @projects = @user.projects
   end
 
   #develop this for user profile

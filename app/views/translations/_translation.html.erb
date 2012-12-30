@@ -1,4 +1,3 @@
-<h1>Translation</h1>
 
 <p>
   <b><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %></b><br>
@@ -11,7 +10,6 @@
 </p>
    	<%= Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %> ||
    <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %> ||
-   <%= translation.created_at %><br/>
 </p>
 <div class="form-actions">
 
@@ -19,4 +17,7 @@
           <%= link_to 'Destroy', translation_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
 </div>
 
-
+  <span class="timestamp">
+    Created <%= time_ago_in_words(project.created_at) %> ago.
+  </span>
+</li>

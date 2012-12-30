@@ -18,13 +18,20 @@ require 'spec_helper'
 describe User do
  
  #before block gets run before each example
-  before { @user = User.new(name: "Example User", email: "user@example.com", locale_id: 1, password: "admin", password_confirmation: "admin") }
+  before { @user = User.new(            name: "Example User", 
+                                        email: "user@example.com", 
+                                        locale_id: 1, 
+                                        password: "admin", 
+                                        password_confirmation: "admin") }
 
   #this user is the defautl for the test case
   subject { @user }
 
   it { should respond_to(:name) }
   it { should respond_to(:email) }
+  # it { should respond_to(:authenticate) }
+  it { should respond_to(:password_confirmation) } 
+  it { should respond_to(:remember_token) }   
 
   #testing user associations
   it { should respond_to(:projects) }
@@ -136,5 +143,10 @@ describe "project associations" do
     end
   end
 
+
+  describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
 
 end

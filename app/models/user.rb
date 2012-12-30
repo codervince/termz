@@ -21,8 +21,10 @@ class User < ActiveRecord::Base
 
   attr_accessor :password, :password_confirmation
 
+
   before_save :encrypt_password
   before_save { |user| user.email = email.downcase }
+  before_save :create_remember_token
 
   ## VALIDATIONS
 
@@ -81,7 +83,10 @@ end
 #   guest ? "Guest" : name
 # end
 
+private
 
-
+  def create_remember_token
+      self.remember_token = SecureRandom.urlsafe_base64
+  end
 
 end
