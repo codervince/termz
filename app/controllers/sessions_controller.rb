@@ -12,6 +12,15 @@ class SessionsController < ApplicationController
       # log_in user
       # redirect_back_or user
       session[:user_id] = user.id
+      if params[:session][:remember_me] == "1"
+            cookies[:remember_token] = { 
+                  value: user.remember_token,
+                  expires: 6.months.from_now.utc }
+      else
+        cookies[:remember_token] = nil
+      end
+
+
       redirect_to user, :notice => "#{t 'loggedin', default: 'You are now logged in'}" 
    
     else

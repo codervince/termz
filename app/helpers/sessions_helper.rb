@@ -3,8 +3,14 @@ module SessionsHelper
 
   def log_in(user)
   	#or cookies[:permament] = user.remember_token
-    cookies[:remember_token] = { value: user.remember_token,
+
+    if params[session[:remember_me]] == "1"
+            cookies[:remember_token] = { 
+                  value: user.remember_token,
     							expires: 6.months.from_now.utc }
+    else
+      cookies[:remember_token] = nil
+    end  
     self.current_user = user
   end
 

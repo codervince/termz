@@ -4,7 +4,7 @@
 <%= simple_form_for(:session, url: sessions_path, :html => { :class => 'form-horizontal' }) do |f| %>
 	  <%= f.input :email %>
 	  <%= f.input :password %>
-
+    <%= f.input :remember_me, :as => :boolean %>
 	  <div class="form-actions">
       <%= f.submit t('login.submit_button', :default=> "Log In"), :class => 'btn btn-primary' %>
    
