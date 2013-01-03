@@ -12,6 +12,7 @@ end
 
 def index
  @translations = Translation.order('created_at desc')
+
 end
 
 def edit
@@ -43,7 +44,15 @@ end
   end
 
 def new
- @translation = Translation.new
+  #get project 
+  #if GUEST? all projects where public true
+  @user = current_user
+  @project = Project.find(params[:project_id])
+  @translation = Translation.new
+  # # @project = Project.find(params[:id])
+  # @translations = @project.translations
+
+ # @translation = Translation.new
  @languages = Language.all(:order => 'iso_code')
     respond_to do |format|
       format.html # new.html.erb
@@ -56,11 +65,11 @@ end
 #version 2 - mutliselect to create X translations of same content, one for each domain
 def create
   @translation = Translation.new(params[:translation])
-  #process information from checkbox
+   #process information from checkbox
 
   if @translation.save
     flash[:notice] = "Translation was successfully created"
-    redirect_to translations_path
+    redirect_to user_project_translations_path
   else
     render 'new'
   end

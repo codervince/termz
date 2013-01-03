@@ -12,6 +12,7 @@ COLORED PUBLIC?
 SOURCE- iterate over all sources for translation_id
 if it looks like a link, put in a link tag
 
+THIS TABLE IS FOR PUBLIC ACCESS TO TRANSLATIONS??
 
 <table class="table table-striped">
 
@@ -19,10 +20,10 @@ if it looks like a link, put in a link tag
     <% @translations.each do |translation| %>
       <tr>
         <td><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %>
-        <%= link_to translation.source_content, translation_path(translation) %></td>
+        <%= link_to translation.source_content, user_project_translations_path(translation) %></td>
     
         <td><%= Language.find_by_id(translation.target_lang_id).iso_code if not translation.target_lang_id.nil? %>
-        <%= link_to translation.target_content, translation_path(translation) %></td>
+        <%= link_to translation.target_content, user_project_translations_path(translation)  %></td>
 
         <td><%=  Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %>
         <%= translation.created_at %><br/>
@@ -30,15 +31,15 @@ if it looks like a link, put in a link tag
         <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %>
       </td>
         <td>
-          <%= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', translation_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Edit', edit_user_project_translation_path(translation), :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', user_project_translations_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
         </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= link_to 'New', new_translation_path, :class => 'btn btn-primary' %>
+<%= link_to 'New', new_user_project_translation_path, :class => 'btn btn-primary' %>
 <%= link_to 'Batch Entry', '#', :class => 'btn btn-primary' %>
 
 <h2>Batch Import Translations</h2>

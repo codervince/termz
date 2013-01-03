@@ -1,6 +1,13 @@
 Termz::Application.routes.draw do
 
-  resources :users
+  resources :users do
+      resources :projects do
+
+            resources :translations do
+               collection { post :import }
+            end
+      end
+  end
 
   root to: 'pages#home'
   
@@ -35,12 +42,10 @@ Termz::Application.routes.draw do
   resources :domains
 
 
-  resources :projects
+ 
 
   #translations only within context of projects - nest!
-  resources :translations do
-    collection { post :import }
- end
+
 
    
   # The priority is based upon order of creation:

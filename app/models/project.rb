@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   #has own owner, ultimately may have several users attached to the project
   belongs_to :user
 
-  has_one :source_lang, :class_name => 'Language'
+  belongs_to :source_lang, :class_name => 'Language'
 
 
   default_scope order: 'projects.created_at DESC' 

@@ -40,3 +40,10 @@ en:
   simple_form:
     required:
       html: <abbr title="required">*</abbr>
+  project:
+    new:
+      submit_button: Create project
+  source_language: Source language
+  new:
+    user: !!null 
+  project_was_created_ok: Project was created successfully

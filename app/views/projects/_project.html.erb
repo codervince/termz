@@ -1,5 +1,5 @@
 <li>
-  <span class="content"><%= link_to project.name, project_path(project) %></span>
+  <span class="content"><%= link_to project.name, user_project_path(project) %></span>
   <span class="timestamp">
     Created <%= time_ago_in_words(project.created_at) %> ago.
   </span>

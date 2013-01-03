@@ -32,3 +32,7 @@ de:
     required:
       html: !!null 
   signup: !!null 
+  new:
+    user: !!null 
+  source_language: !!null 
+  project_was_created_ok: !!null 

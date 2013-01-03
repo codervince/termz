@@ -1,6 +1,11 @@
 class SessionsController < ApplicationController
  
  def new
+    if user = User.find_by_password_digest(cookies[:remember_token])
+        session[:user_id] = user.id
+        redirect_to user, :notice => "Welcome back #{user.name}"
+    end   
+      
 
   end
   
