@@ -51,19 +51,19 @@ describe "User pages" do
       end
     end
 
-    # describe "with valid information" do
-    #   before do
-    #     fill_in :name,         with: "Example User"
-    #     fill_in :email,        with: "user2@example.com"
-    #     fill_in :password,     with: "foobar"
-    #     fill_in :password_confirmation, with: "foobar"
-    #     choose('user_locale_id_4')
-    #   end
+    describe "with valid information" do
+      before do
+        fill_in :name,         with: "Example User"
+        fill_in :email,        with: "user2@example.com"
+        fill_in :password,     with: "foobar"
+        fill_in :password_confirmation, with: "foobar"
+        # choose("user_locale_id_21")
+      end
 
-    #   it "should create a user" do
-    #     expect { click_button submit }.to change(User, :count).by(1)
-    #   end
-    # end
+      it "should create a user" do
+        expect { click_button submit }.to change(User, :count).by(1)
+      end
+    end
 
 end
 

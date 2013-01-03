@@ -1,30 +1,37 @@
 Termz::Application.routes.draw do
 
+  resources :users
+
   root to: 'pages#home'
   
-  match '/about', :to => 'pages#about' 
-  match '/contact', :to => 'pages#contact'
-  match '/home', :to => 'pages#home'
-  match '/search', :to => 'pages#search'
+  # match '/about', :to => 'pages#about' 
+  # match '/contact', :to => 'pages#contact'
+  # match '/home', :to => 'pages#home'
+  # match '/search', :to => 'pages#search'
 
-  get "pages/home"
+  # get "pages/home"
 
-  get "pages/about"
+  # get "pages/about"
 
-  get "pages/contact"
+  # get "pages/contact"
 
-  get "pages/search"
+  # get "pages/search"
 
- get "log_in" => "sessions#new", :as => "log_in"
- get "log_out" => "sessions#destroy", :as => "log_out"
+ match "/sign_up", to: "users#new"
+ match "/log_in", to: "sessions#new"
+ match "/log_out", to: "sessions#destroy", via: :delete
 
-  get "users/new"
-  get "sign_up" => "users#new", :as => "sign_up"
+  # match '/signup', to: 'users#new'
+  # match '/signin', to: 'sessions#new'
+  # match '/signout', to: 'sessions#destroy', via: :delete
+      
+  match '/home', to: 'pages#home'
+  match '/about', to: 'pages#about'
+  match '/contact', to: 'pages#contact'
+  match '/search', to: 'pages#search'
 
 
-
-  resources :users
-  resources :sessions
+  resources :sessions, only: [:new, :create, :destroy]
   resources :domains
 
 

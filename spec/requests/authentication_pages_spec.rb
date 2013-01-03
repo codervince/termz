@@ -34,6 +34,7 @@ describe "Authentication" do
           end
 
           it { should have_link('Log Out', href: log_out_path) }
+          it { should_not have_link('Log In', href: log_in_path) }
       end
   end
 

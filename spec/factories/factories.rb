@@ -1,3 +1,5 @@
+FactoryGirl.reload
+
 FactoryGirl.define do
   factory :user do
     name     "Vince Vincent"
