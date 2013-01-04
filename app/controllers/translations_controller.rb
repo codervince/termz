@@ -11,7 +11,12 @@ end
 
 
 def index
- @translations = Translation.order('created_at desc')
+  #display translations 
+ @user = current_user
+ @project = Project.find(params[:project_id])
+ @translations = @project.translations 
+ #all translations
+ # @translations = Translation.order('created_at desc')
 
 end
 
@@ -44,16 +49,30 @@ end
   end
 
 def new
-  #get project 
-  #if GUEST? all projects where public true
+
+  #from railsrecipes recipe 22
   @user = current_user
   @project = Project.find(params[:project_id])
   @translation = Translation.new
+
+  #get project 
+  #if GUEST? all projects where public true
+  #get user
+  # @project = current_user.projects.build
+ 
+  # @project = current_user.projects.build(params[:project])
+
+  # @translation.owner_id = current_user.id
+  # @translation.project_id = Project.find_by_id(params[:project_id]).id
+
+  
+  # @translation = Translation.new
   # # @project = Project.find(params[:id])
   # @translations = @project.translations
 
  # @translation = Translation.new
  @languages = Language.all(:order => 'iso_code')
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @translation }
@@ -64,12 +83,34 @@ end
 #version 1 - 1 domain per translation
 #version 2 - mutliselect to create X translations of same content, one for each domain
 def create
-  @translation = Translation.new(params[:translation])
-   #process information from checkbox
+
+ #from railsrecipes recipe 22 - refactor
+  # @user = current_user
+  @user = current_user
+  @project = Project.find(params[:project_id])
+  @translation = @project.translations.build(params[:translation])
+  @translation.owner_id = @user.id
+
+# @project = Project.find(params[:id])
+
+#  @translation = Translation.new(params[:translation])
+#  @translation.owner_id = current_user.id
+# @translation.project_id = Project.find_by_id(params[:project_id]).id
+  # @user = User.find(params[:user_id])
+  # @project = Project.find(params[:project_id])
+  # @translation = Translation.new(params[:translation])
+  # @project = current_user.projects.build
+  # @translation = @project.translations.build
+  # @user = current_user
+  # @project = Project.find_by_user_id(@user)
+  # @translation = @project.translations.build(params[:translation])
+  @languages = Language.all(:order => 'iso_code')
+  #  #process information from checkbox
 
   if @translation.save
     flash[:notice] = "Translation was successfully created"
-    redirect_to user_project_translations_path
+    # redirect_to user_project_translations_path(@user, @project)
+    redirect_to root_path
   else
     render 'new'
   end
