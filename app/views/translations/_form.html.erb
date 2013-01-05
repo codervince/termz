@@ -12,7 +12,7 @@
   <%= f.error :base %>
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to 'Cancel', user_projects_path(current_user, @project), :class => 'btn' %>
+      <%= link_to t(:goback, :default => "Go Back"), user_projects_path(current_user, @project), :class => 'btn' %>
     </div>
   </fieldset>
 <% end %>

@@ -1,0 +1,7 @@
+<div id="batchform">
+      <h2>Batch Import Translations</h2>
+      <%= form_tag(import_user_project_translations_path(current_user, @project), multipart: true) do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "Import" %>
+      <% end %>
+</div>

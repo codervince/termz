@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130103110844) do
+ActiveRecord::Schema.define(:version => 20130105150106) do
 
   create_table "approvals", :force => true do |t|
     t.string  "name"
@@ -29,7 +29,10 @@ ActiveRecord::Schema.define(:version => 20130103110844) do
     t.string "name"
     t.string "code"
     t.string "image_url"
+    t.string "ancestry"
   end
+
+  add_index "domains", ["ancestry"], :name => "index_domains_on_ancestry"
 
   create_table "languages", :force => true do |t|
     t.string "name"

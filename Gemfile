@@ -24,7 +24,10 @@ gem 'jquery-rails'
 gem 'simple_form'
 gem 'annotate'
 
+gem 'ancestry'
 gem 'smarter_csv'
+
+
 
 #this was taken from HARTL 
 group :development, :test do

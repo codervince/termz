@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 	before_filter :signed_in_user
 
 def new
-	@project = current_user.projects.build
+	@project = Project.new
 	@languages = Language.all(:order => 'iso_code')
 
 end
@@ -15,6 +15,7 @@ def show
     # @translations all translations from all projects
 	@project = Project.find(params[:id])
 	@translations = @project.translations
+  @projectlang = Language.find_by_id(@project.source_lang_id).iso_code
 end
 
 
@@ -29,5 +30,12 @@ def create
   end
 end
 
+
+def index
+  #display all projects for a particular user
+  @projects = current_user.projects
+
+
+end
 
 end

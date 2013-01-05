@@ -3,15 +3,22 @@ class TranslationsController < ApplicationController
 def import
   #use carrierwave for more permanent storage e.g. TMX
   #class action (import) in model to handle behavior
+
+  @project = Project.find(params[:project_id])
+  
+  Translation.set_ids(current_user, @project)
+
   Translation.import(params[:file])
-  redirect_to translations_path, notice: "Translations imported"
+  @translations = @project.translations
+  flash[:notice] = t(:translations_imported, :default => "Translations imported" ) 
+  redirect_to user_project_translations_path(@current_user, @project)
 
 end
 
 
 
 def index
-  #display translations 
+  #display translations for a project
  @user = current_user
  @project = Project.find(params[:project_id])
  @translations = @project.translations 
@@ -41,7 +48,7 @@ end
 
   def show
     @translation = Translation.find(params[:id])
-
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @translation }

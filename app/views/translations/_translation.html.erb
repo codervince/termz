@@ -1,23 +1,25 @@
+<% @owner= User.find_by_id(translation.owner_id) %>
 
 <p>
   <b><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %></b><br>
-  <%= link_to translation.source_content, translation_path(translation) %>
+  <%= link_to translation.source_content, user_project_translation_path(current_user, @project, translation) %>
 </p>
 
 <p>
   <b><%= Language.find_by_id(translation.target_lang_id).iso_code if not translation.target_lang_id.nil? %></b><br>
-  <%= link_to translation.target_content, translation_path(translation) %>
+  <%= link_to translation.target_content, user_project_translation_path(current_user, @project, translation) %>
 </p>
-   	<%= Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %> ||
-   <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %> ||
+   	<%= Domain.find_by_id(translation.domain_id).code  if not translation.domain_id.nil? %>
+   <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %><br/>
+    <%= translation.is_public? ? "public" : "private" %>
 </p>
 <div class="form-actions">
 
-          <%= link_to 'Edit', edit_translation_path(translation), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', translation_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <%= link_to 'Edit', edit_user_project_translation_path(current_user, @project, translation),  :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', user_project_translation_path(current_user, @project, translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
 </div>
 
   <span class="timestamp">
-    Created <%= time_ago_in_words(project.created_at) %> ago.
+    Created <%= time_ago_in_words(translation.created_at) %> ago by <%= @owner.name unless @owner.nil? %>
   </span>
 </li>

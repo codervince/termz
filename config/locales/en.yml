@@ -47,3 +47,5 @@ en:
   new:
     user: !!null 
   project_was_created_ok: Project was created successfully
+  goback: Go Back
+  translations_imported: Translations imported

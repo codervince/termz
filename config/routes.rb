@@ -2,12 +2,12 @@ Termz::Application.routes.draw do
 
   resources :users do
       resources :projects do
-
             resources :translations do
                collection { post :import }
             end
       end
   end
+
 
   root to: 'pages#home'
   

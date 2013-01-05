@@ -19,7 +19,13 @@
 #
 
 class Translation < ActiveRecord::Base
-  attr_accessible :approval_id, :domain_id, :owner, :project, :source_content, :source_lang_id, :target_content, :target_lang_id, :source_id
+
+
+
+
+Translation::ISO_3166_SEPARATOR = "-"
+
+  attr_accessible :approval_id, :domain_id, :owner_id, :project_id, :source_content, :source_lang_id, :target_content, :target_lang_id, :source_id
 
   validates_presence_of :source_content, :source_lang_id, :target_content, :target_lang_id, :domain_id
 
@@ -37,8 +43,29 @@ class Translation < ActiveRecord::Base
 
  	belongs_to :source
 
- 	## IMPROVE TO ADD owner_id and project_id
+ 	def self.set_ids(user, project)
+ 		@current_user = user
+ 		@current_project = project
+ 	end
+
+
+
  	def self.import(file)
+
+
+ 		### DO DATABASE RAKE TASK TO SET UP LANGUAGES + DOMAINS FIRST!!!!!!!!!
+
+
+ 		###
+ 		#MAKE THIS A GEM IMPORTTERMZCSV?
+ 		###deal with variations in headers deDE enUS etc
+ 		###deal with 3 digit ISO CODES
+ 		### What if DOMAIN NAME IN FILE NAME IS NOT IN DB??
+
+
+ 		###
+ 		# GET CURRENT USER AND PROJECT ID WHEN FORM IS UPLOADED (IN IMPORT CONTROLLER ACTION??)
+
 
  		#CSV has headers: source_lang, target_language, source
  		#Take source_language look up id in Language table and assign to source_lang_id and same for target
@@ -50,6 +77,7 @@ class Translation < ActiveRecord::Base
  			#file.path
  			header_flds = CSV.read(file.path)[0]
  			if header_flds.count == 3
+ 				#TODO: try to find by iso code otherwise default to id 1000 'un' to id 1000 'un'
  				source_lang_id = Language.find_by_iso_code(correct_iso(header_flds[0])).id 
  				target_lang_id = Language.find_by_iso_code(correct_iso(header_flds[1])).id
  				# source_id = Source.find_or_create_by_url(header_flds[2]).id 	
@@ -58,8 +86,10 @@ class Translation < ActiveRecord::Base
  			end	
  			#rtns array of hashes with new 
  			#domain based on filename format DOMAIN_
- 			domain_code = get_domain_code(file.original_filename) 			
- 				domain_id = Domain.find_by_code(domain_code).id 
+ 				domain_code = get_domain_code(file.original_filename) 			
+ 				domain_id = Domain.find_by_code(domain_code).id
+
+
  				trans = SmarterCSV.process(file.path, :user_provided_headers => [:source_content, :target_content, :url]) do |arr|
  								#TODO: do not create source if blank url 
  								source_id = Source.create(arr.first.slice(:url)).id if arr.first.has_value?(:url)
@@ -68,7 +98,9 @@ class Translation < ActiveRecord::Base
  												{  :source_lang_id => source_lang_id, 
  												   :target_lang_id => target_lang_id, 
  												   :domain_id => domain_id,
- 												   :source_id => source_id
+ 												   :source_id => source_id,
+ 												   :owner_id => @current_user.id,
+ 												   :project_id => @current_project.id
  												}	
  												)).id
 
@@ -87,16 +119,39 @@ class Translation < ActiveRecord::Base
 
  	end 	
 
+
+ 	#should take an input which can DE de-AT de_At deCH (and all cases) and returns ISO code.
+ 	#PREREQUISITE - standard codes de-de or de must be in Domains table
+ 	#RETURNS - The iso-code which is in the table as a string, either 5 digit XX-XX or 2 digit XX 
  	def self.correct_iso(field)
- 		if field.size == 5
- 			field[2] = "-"
- 			return field
- 		else field.size == 2
- 			#basic ISO code
- 			return field
+ 		case field.size
+ 		when 5
+ 			if ["-", "_"].include?(field[2])
+				field[2] = ISO_3166_SEPARATOR
+ 			 	return field.downcase
+ 			else
+ 				raise "Formatting error"
+ 			end 
+ 		when 4
+ 			#does field only consist of \ws? if so add a "_"
+ 			if field.scan(/\w+/).include?(field)
+ 				field.insert(2, ISO_3166_SEPARATOR)
+ 				return field.downcase
+ 			else 
+ 				raise "Formatting Error"
+ 			end  	
+ 		when 2
+ 			# ISO 639-1
+ 			if field.scan(/\w+/).include?(field)
+ 				return field.downcase
+ 			else
+ 				raise "Formatting Error"
+ 			end	
  		end	
  	end	
 
+ 	#  ISO 3166:1993  four letter
+ 	# ISO 639-1  two letter
  	def self.get_domain_code(filename)
  		#filename must have an underscore starts with domain as one word
  		if filename.include?("_")

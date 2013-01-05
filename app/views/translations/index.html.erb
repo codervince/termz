@@ -40,13 +40,6 @@ THIS TABLE IS FOR PUBLIC ACCESS TO TRANSLATIONS??
 </table>
 
 <%= link_to 'New', new_user_project_translation_path, :class => 'btn btn-primary' %>
-<%= link_to 'Batch Entry', '#', :class => 'btn btn-primary' %>
 
-<h2>Batch Import Translations</h2>
-
-<%= form_tag import_translations_path, multipart: true do %>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
 
 
