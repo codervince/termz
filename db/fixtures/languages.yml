@@ -1,65 +1,185 @@
 german:
-  id: 1
+  id: 1    
   iso_code: de
-  name: German INT
+  name: German
+  image_url: de.gif
+  local_name: Deutsch
 
-english:
+german_at:
   id: 2
-  iso_code: en
-  name: English INT
+  iso_code: de-at
+  name: German (Austria)
+  image_url: de.gif
+  local_name: Deutsch (Österreich)
 
 spanish:
   id: 3
   iso_code: es
-  name: Spanish INT
+  name: Spanish
+  image_url: es-es.gif
+  local_name: español 
 
-russian:
-  id: 4    
-  iso_code: ru
-  name: Russian
+spanish_lm:
+  id: 4
+  iso_code: es-lm
+  name: Spanish (Latin America)
+  image_url: es-lm.gif
+  local_name: español (Latinoamérica) 
 
 chinese:
   id: 5    
-  iso_code: zh
-  name: Chinese (Mandarin)
+  iso_code: zh-cn
+  name: Chinese (Simplified)
+  image_url: zh-cn.gif
+  local_name: 中文
+
+chinese_trad:
+  id: 6    
+  iso_code: zh-tw
+  name: Chinese (Traditional)
+  image_url: zh-tw.gif
+  local_name: 中文 (台灣)
+
+thai:
+  id: 7    
+  iso_code: th
+  name: Thai
+  image_url: th.gif
+  local_name: ไทย
+
+japanese:
+  id: 8    
+  iso_code: jp
+  name: Japanese
+  image_url: jp.gif
+  local_name: 日本語
+
+russian:
+  id: 9    
+  iso_code: ru
+  name: Russian
+  image_url: ru.gif
+  local_name: русский
+
+russian_ru:
+  id: 10   
+  iso_code: ru-ru
+  name: Russian (Russia)
+  image_url: ru.gif
+  local_name: русский (Россия)
+
+italian:
+  id: 11    
+  iso_code: it
+  name: Italian
+  image_url: it.gif
+  local_name: italiano        
 
 arabic:
-  id: 6     
-  iso_code: ar
-  name: Arabic
-  
-german_de:
-  id: 21
-  iso_code: de-de
-  name: German (Germany)
- 
-german_at:
-  id: 22
-  iso_code: de-at
-  name: German (Austria)
+   id: 12
+   iso_code: ar
+   name: Arabic
+   image_url: ar-sa.gif
+   local_name: العربية
+
+arabic_sa:
+  id: 13     
+  iso_code: ar-sa
+  name: Arabic (Saudi Arabia)
+  image_url: ar-sa.gif
+  local_name: العربية (السعودية
 
 german_ch:
-  id: 23
+  id: 14
   iso_code: de-ch
   name: German (Switzerland)
- 
-english_gb:
-  id: 25
-  iso_code: en-gb
-  name: English (GB)
+  image_url: 
+  local_name: Deutsch (Schweiz)
 
-english_us:
+english_gb:
+  id: 15
+  iso_code: en-gb
+  name: English (United Kingdom)
+  image_url: en-gb.gif
+  local_name: English (United Kingdom)
+
+hindi:
+  id: 16
+  iso_code: hi-in
+  name: Hindi (India)
+  image_url: hi.gif 
+  local_name: हिंदी (भारत)
+
+french:
+  id: 17
+  iso_code: fr
+  name: French
+  image_url: fr.gif
+  local_name: French
+
+french:
+  id: 18
+  iso_code: fr-fr
+  name: French (France)
+  image_url: fr.gif
+  local_name: français (France)
+
+french_ca:
+  id: 19
+  iso_code: fr-ca
+  name: French (Canada)
+  image_url: fr-ca.gif
+  local_name: français (Canada)
+
+hebrew:
+  id: 20
+  iso_code: iw
+  name: Hebrew
+  image_url: iw.gif
+  local_name: עברית
+
+korean:
+  id: 21
+  iso_code: ko
+  name: Korean
+  image_url: ko.gif
+  local_name: 한국어
+
+romanian:
+  id: 22
+  iso_code: ro
+  name: Romanian
+  image_url: ro.gif
+  local_name: română 
+
+portuguese:
+  id: 23
+  iso_code: pt
+  name: Portuguese
+  image_url: pt.gif
+  local_name: português 
+
+portuguese_br:
+  id: 24
+  iso_code: pt
+  name: Portuguese (Brazil)
+  image_url: pt.gif
+  local_name: português
+
+english:
+  id: 25
+  iso_code: en
+  name: English
+  image_url: en-us.gif
+  local_name: English
+
+english:
   id: 26
   iso_code: en-us
-  name: English (US)            
-
-spanish_mx:
-  id: 27
-  iso_code: es-mx
-  name: Spanish (Mexico)
-  
+  name: English
+  image_url: en-us.gif
+  local_name: English (United States)
 un:
   id: 1000
   iso_code: un
   name: No/Any Language        
-  

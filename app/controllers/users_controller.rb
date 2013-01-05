@@ -24,6 +24,7 @@ end
  def show
     @user = User.find(params[:id])
     @projects = @user.projects
+    @language = Language.find_by_id(@user.locale_id)
   end
 
   #develop this for user profile
