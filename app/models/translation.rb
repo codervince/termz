@@ -51,7 +51,9 @@ Translation::ISO_3166_SEPARATOR = "-"
 
 
  	def self.import(file)
+ 		#MAKE SURE LANGUAGES UP TO DATE
 
+ 		logger = Logger.new('importlog.log')
 
  		### DO DATABASE RAKE TASK TO SET UP LANGUAGES + DOMAINS FIRST!!!!!!!!!
 
@@ -77,12 +79,14 @@ Translation::ISO_3166_SEPARATOR = "-"
  			#file.path
  			header_flds = CSV.read(file.path)[0]
  			if header_flds.count == 3
- 				#TODO: try to find by iso code otherwise default to id 1000 'un' to id 1000 'un'
- 				source_lang_id = Language.find_by_iso_code(correct_iso(header_flds[0])).id 
- 				target_lang_id = Language.find_by_iso_code(correct_iso(header_flds[1])).id
- 				# source_id = Source.find_or_create_by_url(header_flds[2]).id 	
- 			else
- 				raise "Please check formatting"
+ 				#TODO: try to find by iso code otherwise default to id 1000 'un' to id 1000 'un' 
+ 				begin
+ 					source_lang_id = Language.find_by_iso_code(correct_iso(header_flds[0])).id 
+ 					target_lang_id = Language.find_by_iso_code(correct_iso(header_flds[1])).id
+ 				rescue Exception => e
+ 					logger.error "Incorrect headers/ISO Code not in database: #{e}" + "  " + Time.now
+
+ 				end	
  			end	
  			#rtns array of hashes with new 
  			#domain based on filename format DOMAIN_

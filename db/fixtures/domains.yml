@@ -8,9 +8,9 @@ eleceng:
    name: Electrical Engineering
 auto:
    id: 3
-   code: AUTO
+   code: AUTOMOTIVE
    name: Automotive Engineering
-auto:
+pharma:
    id: 4
    code: PHARMA
    name: Pharmaceuticals

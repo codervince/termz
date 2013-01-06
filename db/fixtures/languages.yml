@@ -173,12 +173,19 @@ english:
   image_url: en-us.gif
   local_name: English
 
-english:
+english_us:
   id: 26
   iso_code: en-us
   name: English
   image_url: en-us.gif
   local_name: English (United States)
+
+german_de:
+  id: 27
+  iso_code: de-de
+  name: German (Germany)
+  image_url: de.gif
+  local_name: Deutsch (Österreich)
 un:
   id: 1000
   iso_code: un

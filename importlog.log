@@ -1,0 +1,6 @@
+# Logfile created on 2013-01-06 13:40:56 +0700 by logger.rb/25413
+Incorrect headers/ISO Code not in database: Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
+Incorrect headers/ISO Code not in database: Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
+Incorrect headers/ISO Code not in database: Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
+Incorrect headers/ISO Code not in database: Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
+Incorrect headers/ISO Code not in database: Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id
