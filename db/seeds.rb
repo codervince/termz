@@ -6,14 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-# require 'active_record/fixtures'
-# Domain.delete_all
-# Language.delete_all
-# # languages will be from a language file?? #see ascii 179
-# ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "languages")
-# ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "domains")
-# User.delete_all
-# Approval.delete_all
+require 'active_record/fixtures'
+Domain.delete_all
+Language.delete_all
+# languages will be from a language file?? #see ascii 179
+ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "languages")
+ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", "domains")
 
 
 #users for different languages

@@ -10,15 +10,15 @@ namespace :db do
     make_sources
   end
 
- desc "Loads initial data needed by application."
-  	task :populate => :environment do
+ # desc "Loads initial data needed by application."
+ #  	task :populate => :environment do
   			
-  	require 'active_record/fixtures'
-  		Dir.glob(Rails.root + '/db/fixtures/*.yml').each do |file|
-  			base_name = File.basename(file, '.*')
-  			Fixtures.create_fixtures('db/fixtures', base_name)
-  		end
-  	end	
+ #  	require 'active_record/fixtures'
+ #  		Dir.glob(Rails.root + '/db/fixtures/*.yml').each do |file|
+ #  			base_name = File.basename(file, '.*')
+ #  			ActiveRecord::Fixtures.create_fixtures("#{Rails.root}/db/fixtures", base_name)
+ #  		end
+ #  	end	
 
 end
 

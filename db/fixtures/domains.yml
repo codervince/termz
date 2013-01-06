@@ -27,10 +27,10 @@ itsoft:
    code: ITSOFT
    name: Software Engineering
 liebherr:
-   id: 4
+   id: 8
    code: LIEBHERR
    name: Liebherr (Company Specific)
 general:
-   id: 4
+   id: 9
    code: GENERAL
    name: General/unspecified 
