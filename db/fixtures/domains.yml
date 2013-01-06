@@ -1,19 +1,36 @@
-comp:
+mecheng:
    id: 1
    code: MECHENG
    name: Mechanical Engineering
-   image_url: assets/images/mecheng.png
-   
 eleceng:
    id: 2
    code: ELECENG
    name: Electrical Engineering
-   
 auto:
    id: 3
-   code: AUTOMOTIVE
+   code: AUTO
    name: Automotive Engineering
 auto:
    id: 4
    code: PHARMA
-   name: Pharmaceuticals 
+   name: Pharmaceuticals
+hydraulics:
+   id: 5
+   code: HYDRAULIC
+   name: Hydraulics
+logistics:
+   id: 6
+   code: LOGISTICS
+   name: Logistics
+itsoft:
+   id: 7
+   code: ITSOFT
+   name: Software Engineering
+liebherr:
+   id: 4
+   code: LIEBHERR
+   name: Liebherr (Company Specific)
+general:
+   id: 4
+   code: GENERAL
+   name: General/unspecified 
