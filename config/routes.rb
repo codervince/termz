@@ -16,13 +16,13 @@ Termz::Application.routes.draw do
   # match '/home', :to => 'pages#home'
   # match '/search', :to => 'pages#search'
 
-  # get "pages/home"
+  get "pages/home"
 
-  # get "pages/about"
+  get "pages/about"
 
-  # get "pages/contact"
+  get "pages/contact"
 
-  # get "pages/search"
+  get "pages/search"
 
  match "/sign_up", to: "users#new"
  match "/log_in", to: "sessions#new"

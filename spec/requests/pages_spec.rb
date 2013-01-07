@@ -45,23 +45,32 @@ describe "User pages" do
 
     let(:submit) { "Sign Up" }
 
-    describe "with invalid information" do
+    describe "with invalid information 1" do
+        before do 
+          fill_in :name,    with: "SOME USER"
+        end
+
+
       it "should not create a user" do
         expect { click_button submit }.not_to change(User, :count)
       end
     end
 
+
+    #THIS WORKS IN THE BROWSER BUT NOT HERE - WHY??
     describe "with valid information" do
       before do
         fill_in :name,         with: "Example User"
-        fill_in :email,        with: "user2@example.com"
+        fill_in :email,        with: "user69@example.com"
         fill_in :password,     with: "foobar"
         fill_in :password_confirmation, with: "foobar"
         # choose("user_locale_id_21")
       end
 
       it "should create a user" do
-        expect { click_button submit }.to change(User, :count).by(1)
+        expect { click_button submit }.to change(User, :count).by(1)      #but works in app!
+
+
       end
     end
 

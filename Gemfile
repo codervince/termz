@@ -46,6 +46,9 @@ group :assets do
   gem 'libv8', '~> 3.11.8'
   gem 'therubyracer'
   gem 'less-rails'
+  gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+  gem 'jquery-ui-rails'
+
 # gem 'twitter-bootstrap-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

@@ -1,9 +1,10 @@
-FactoryGirl.reload
+# FactoryGirl.reload
 
 FactoryGirl.define do
   factory :user do
-    name     "Vince Vincent"
-    email    "vince@example.com"
+    sequence(:name) { |n| "User Name #{n}" }                         
+    sequence(:email) { |n| "person-#{n}@example.com" } 
+    locale_id 21      #koream
     password "foobar"
     password_confirmation "foobar"
   end
@@ -11,7 +12,7 @@ FactoryGirl.define do
 
   factory :project do
   	name "Lorem ipsum"
-  	user
+  	association :user  
   end
 
 end

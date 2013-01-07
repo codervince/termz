@@ -11,7 +11,7 @@
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-           	<%= image_tag("#{@language.image_url}") %>
+           	<%= image_tag("#{@language.image_url}") if not @language.nil? %>
     </section>
   </aside>
 </div>

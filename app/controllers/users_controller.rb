@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
+
+  before_filter :signed_in_user, only: [:edit, :update]
+
   def new
   	@user = User.new
+  end
+
+  def edit
+      @user= User.find(params[:id])
   end
 
 
@@ -9,7 +16,7 @@ class UsersController < ApplicationController
  	 # @user = params[:user] ? User.new(params[:user]) : User.new_guest
  	 if @user.save
  	  flash[:notice] =  t(:signedup, :default => "Signed up!")
-      redirect_to user_path(@user)
+      redirect_to @user
      else
       render "new"
     end
@@ -38,5 +45,14 @@ end
       render 'edit'
     end
   end
+
+
+  private
+
+    def signed_in_user
+      redirect_to log_in_url, notice: "Please sign in." unless signed_in?
+
+    end 
+
 
 end
