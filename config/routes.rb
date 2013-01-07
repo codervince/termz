@@ -1,5 +1,7 @@
 Termz::Application.routes.draw do
 
+  devise_for :users
+
   resources :users do
       resources :projects do
             resources :translations do

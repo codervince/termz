@@ -64,7 +64,7 @@ describe "User pages" do
         fill_in :email,        with: "user69@example.com"
         fill_in :password,     with: "foobar"
         fill_in :password_confirmation, with: "foobar"
-        # choose("user_locale_id_21")
+        # choose("user_set_language_id_21")
       end
 
       it "should create a user" do

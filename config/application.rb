@@ -39,7 +39,8 @@ module Termz
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    ## added password conf for Devise..
+    config.filter_parameters += [:password, :password_confirmation]
 
     # Enable escaping HTML in JSON.
     config.active_support.escape_html_entities_in_json = true
@@ -60,6 +61,13 @@ module Termz
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+
+    # don't generate RSpec tests for views and helpers
+    config.generators do |g|
+        g.view_specs false
+        g.helper_specs false
+    end
 
 
   end
