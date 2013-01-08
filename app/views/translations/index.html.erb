@@ -23,6 +23,7 @@ DATA TABLES!
 
   <tbody>
     <% @translations.each do |translation| %>
+    <% @owner= User.find_by_id(translation.owner_id) %>
       <tr>
         <td><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %>
         <%= link_to translation.source_content, user_project_translations_path(translation) %></td>

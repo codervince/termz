@@ -1,7 +1,7 @@
 
 <% @owner= User.find_by_id(translation.owner_id) %>
 
-<p>
+<!-- <p>
   <b><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %></b><br>
   <%= link_to translation.source_content, user_project_translation_path(current_user, @project, translation) %>
 </p>
@@ -23,4 +23,26 @@
   <span class="timestamp">
     Created <%= time_ago_in_words(translation.created_at) %> ago by <%= @owner.name unless @owner.nil? %>
   </span>
-</li>
+</li> -->
+
+<tr>
+      <td><%= translation.source_content %> <%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %> </td>
+
+      <td><%= translation.target_content %>  <%= Language.find_by_id(translation.target_lang_id).iso_code if not translation.target_lang_id.nil? %> </td>
+
+       <td><%= Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil?  %></td>
+
+       <td><%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil?  %></td>
+
+       <td><%= @owner.name  %></td>
+
+      <td><%= translation.created_at.strftime("%B %e, %Y") %> by <%= @owner.name unless @owner.nil? %> </td>
+      <td><%= translation.is_public ? "public" : "private"  %></td>
+      <td>
+        <!-- put this logic in translations feed page rather than project feed page -->
+          <% if @owner.id == current_user.id %>
+          <%= link_to 'Edit', edit_user_project_translation_path(@owner, @project, translation),  :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', user_project_translation_path(@owner, @project, translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+          <% end %>
+      </td>
+</tr>

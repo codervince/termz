@@ -15,32 +15,38 @@
 	<%= link_to 'Batch Entry', '#', :class => 'btn btn-primary' %>
 	<%= link_to 'Back to Project', user_project_path(current_user, @project), :class => 'btn btn-primary' %>
 	<%= link_to 'Get More Translations', "#", :class => 'btn btn-primary' %>
+  <%= link_to 'All Translations', "#", :class => 'btn btn-primary' %>
 </div>	
+
 
 
 
 <h2> My Translations for this Project </h2>
 
+MAXIMUM 1000 then Create New Project
+
+<table id="translations" class="table table-striped">
+<thead>
+  <tr>
+<th>Source Language </th>
+      <th>Target Language</th>
+      <th>Domain</th>
+      <th>Source</th>
+      <th>Owner</th>
+      <th>Created on?</th>
+      <th>Public?</th>
+      <th>Links</th>
+    </tr>
+</thead>
+<tbody>
+    <%= render @translations %> 
+</tbody>
+</table>
 
 
-<div id="searchtranslationbox">
 
-<button id="search">Toggle Search Box</button>
 
-<br/>
-
-        <div id="searchbox">
-        BELONGS IN A PARTIAL
-        SEARCH BOX ALL TRANSLATIONS FOR THIS PROJECT
-        import_user_project_translations_path 
-        </div>
-</div>
-
-<div id="translations">
-
-    <%= render @translations %>
-
-</div>
+<br>
 
 <div id="translationbatchentry">
 

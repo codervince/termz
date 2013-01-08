@@ -1,7 +1,7 @@
 <h1>Translation</h1>
 
 <p>
-  <b><%= Language.find_by_id(translation.source_lang_id).iso_code if not translation.source_lang_id.nil? %></b><br>
+  <b><%= Language.find_by_id(@translation.source_lang_id).iso_code if not @translation.source_lang_id.nil? %></b><br>
   <%= link_to translation.source_content, translation_path(translation) %>
 </p>
 
