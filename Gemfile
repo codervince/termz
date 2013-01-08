@@ -102,4 +102,4 @@ group :production do
 end
 
 #replace with https://github.com/dhh/tolk
-# gem 'localeapp'
+gem 'localeapp'
