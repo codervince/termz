@@ -31,9 +31,11 @@ DATA TABLES!
         <%= link_to translation.target_content, user_project_translations_path(translation)  %></td>
 
         <td><%=  Domain.find_by_id(translation.domain_id).code if not translation.domain_id.nil? %>
-        <%= translation.created_at %><br/>
+       
         <!-- TODO: if source url is a url, show as a link-->
         <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %>
+        <%= translation.is_public? ? "public" : "private" %>
+
       </td>
         <td>
     
@@ -41,6 +43,9 @@ DATA TABLES!
           <%= link_to 'Destroy', user_project_translation_path(current_user, @project, translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
 
 
+        </td>
+        <td>
+            Created <%= time_ago_in_words(translation.created_at) %> ago by <%= @owner.name unless @owner.nil? %> 
         </td>
       </tr>
     <% end %>
