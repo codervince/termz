@@ -8,7 +8,6 @@
 #  updated_at             :datetime         not null
 #  set_language_id        :integer
 #  name                   :string(255)
-#  remember_token         :string(255)
 #  encrypted_password     :string(255)      default(""), not null
 #  reset_password_token   :string(255)
 #  reset_password_sent_at :datetime
@@ -32,7 +31,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable, :confirmable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :set_language_id, :name
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :set_language_id, :name, :confirmed_at
   # attr_accessible :title, :body
 
 ## VALIDATIONS
@@ -43,6 +42,9 @@ class User < ActiveRecord::Base
   validates     :name, :presence => true,
                 :length => { :maximum => 25 }
 
+
+  ## Devise (by default) will check that the email address and password are not blank and that the email address is unique.
+  ## When a user is created, a name and email address must be present and must be unique (not used before              
   
   validates     :email, :presence => true,
                 :format => { :with => VALID_EMAIL_REGEX },
@@ -64,7 +66,7 @@ class User < ActiveRecord::Base
  
  has_many :projects, dependent: :destroy
 
- belongs_to :set_language_id, :class_name => 'Language'
+ belongs_to :set_language, :class_name => 'Language'
 
 
 

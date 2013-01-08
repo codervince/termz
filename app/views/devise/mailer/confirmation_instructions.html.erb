@@ -1,0 +1,7 @@
+<p><%= t(:welcometotermz, :default=> "Welcome to Termz") %> <%= @resource.email %> !</p>
+
+<!-- t(:signedup, :default => "Signed up!") -->
+
+<p><%= t(:pleaseconfirmbyclcking, :default=> "Please confirm your account email by clicking the link below:") %> </p>
+
+<p><%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %></p>

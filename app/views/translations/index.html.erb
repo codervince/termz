@@ -31,8 +31,11 @@ THIS TABLE IS FOR PUBLIC ACCESS TO TRANSLATIONS??
         <%= Source.find_by_id(translation.source_id).url if not translation.source_id.nil? %>
       </td>
         <td>
-          <%= link_to 'Edit', edit_user_project_translation_path(translation), :class => 'btn btn-mini' %>
-          <%= link_to 'Destroy', user_project_translations_path(translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+    
+          <%= link_to 'Edit', edit_user_project_translation_path(current_user, @project, translation),  :class => 'btn btn-mini' %>
+          <%= link_to 'Destroy', user_project_translation_path(current_user, @project, translation), :method => :delete, :confirm => 'Are you sure?', :class => 'btn btn-mini btn-danger' %>
+
+
         </td>
       </tr>
     <% end %>

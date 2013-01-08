@@ -10,7 +10,7 @@
       <%= f.input :name %>
       <%= f.input :password %>
       <%= f.input :password_confirmation %>
-      <%= f.association :locale, :label => 'Your preferred language', :as => :radio_buttons %>
+      <%= f.association :set_language, :label => 'Your preferred language', :as => :radio_buttons %>
       <%= f.error :base %>
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>

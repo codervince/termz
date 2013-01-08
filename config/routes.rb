@@ -1,6 +1,11 @@
 Termz::Application.routes.draw do
+devise_for :users
+  
 
-  devise_for :users
+  
+   root to: 'pages#home'
+
+  
 
   resources :users do
       resources :projects do
@@ -11,7 +16,7 @@ Termz::Application.routes.draw do
   end
 
 
-  root to: 'pages#home'
+ 
   
   # match '/about', :to => 'pages#about' 
   # match '/contact', :to => 'pages#contact'
@@ -26,9 +31,9 @@ Termz::Application.routes.draw do
 
   get "pages/search"
 
- match "/sign_up", to: "users#new"
- match "/log_in", to: "sessions#new"
- match "/log_out", to: "sessions#destroy", via: :delete
+ # match "/sign_up", to: "users#new"
+ # match "/log_in", to: "sessions#new"
+ # match "/log_out", to: "sessions#destroy", via: :delete
 
   # match '/signup', to: 'users#new'
   # match '/signin', to: 'sessions#new'
@@ -40,7 +45,7 @@ Termz::Application.routes.draw do
   match '/search', to: 'pages#search'
 
 
-  resources :sessions, only: [:new, :create, :destroy]
+  # resources :sessions, only: [:new, :create, :destroy]
   resources :domains
 
 

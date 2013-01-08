@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
 
-	before_filter :signed_in_user
+##restrict this page to logged in users who own the projects
 
 def new
 	@project = Project.new

@@ -101,4 +101,5 @@ group :production do
   gem 'pg'
 end
 
-gem 'localeapp'
+#replace with https://github.com/dhh/tolk
+# gem 'localeapp'

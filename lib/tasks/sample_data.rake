@@ -31,59 +31,66 @@ def make_users
 #speciic names
 user1 = User.create!(
     :email => "publicvince102@gmail.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 26,        #en us
-    :name => "Coder Vince"
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 26,        #en us
+    :name => "Coder Vince",
+    :confirmed_at => DateTime.now
     )
 
 User.create!(
     :email => "fakeemail@example.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 1000,        #un
-    :name => "Kofi Anan"            
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 1000,        #un
+    :name => "Kofi Anan",
+    :confirmed_at => DateTime.now            
     )
 
 
 User.create!(
     :email => "publicvince101@gmail.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 1,        #de
-    :name => "Klaus"            
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 1,        #de
+    :name => "Klaus",
+    :confirmed_at => DateTime.now            
     )
 
 User.create!(
     :email => "test@example.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 13,           #ar-sa
-    :name => "الكأس".encode('utf-8', :invalid => :replace, :undef => :replace)            
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 13,           #ar-sa
+    :name => "الكأس".encode('utf-8', :invalid => :replace, :undef => :replace),
+    :confirmed_at => DateTime.now            
     )
 
 User.create!(
     :email => "test2@example.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 8,
-    :name => "ジミヘン".encode('utf-8', :invalid => :replace, :undef => :replace)
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 8,
+    :name => "ジミヘン".encode('utf-8', :invalid => :replace, :undef => :replace),
+    :confirmed_at => DateTime.now
     ) 
 
 User.create!(
     :email => "test3@example.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 9,
-    :name => "Александр".encode('utf-8', :invalid => :replace, :undef => :replace)
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 9,
+    :name => "Александр".encode('utf-8', :invalid => :replace, :undef => :replace),
+    :confirmed_at => DateTime.now
     )
 
 User.create!(
     :email => "test4@example.com",
-    :password => "admin",
-    :password_confirmation => "admin",
-    :locale_id => 1,			#fr-ca
-    :name => "Françoise".encode('utf-8', :invalid => :replace, :undef => :replace)            
+    :password => "foobar",
+    :password_confirmation => "foobar",
+    :set_language_id => 1,			#fr-ca
+    :name => "Françoise".encode('utf-8', :invalid => :replace, :undef => :replace),
+    :confirmed_at => DateTime.now            
     )
 
 
@@ -92,14 +99,15 @@ User.create!(
 	name = Faker::Name.name
 	email = Faker::Internet.email
     password  = "password"
-    locale_id = (1..26).to_a.sample.to_i
+    set_language_id = (1..26).to_a.sample.to_i
 
     User.create!(
     :name => name,
     :email => email,
     :password => password,
     :password_confirmation => password,
-    :locale_id => locale_id
+    :set_language_id => set_language_id,
+    :confirmed_at => DateTime.now
     )
 end
 end
