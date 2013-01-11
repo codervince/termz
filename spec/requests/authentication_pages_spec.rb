@@ -5,10 +5,10 @@ describe "Authentication" do
   subject { page }
 
   describe "login page" do
-    before { visit log_in_path }
+    before { visit new_user_session_path }    #sign in
 
-    it { should have_selector('h1',    text: 'Log In') }
-    it { should have_selector('title', text: 'Log In') }
+    it { should have_selector('h1',    text: 'Sign in') }
+    it { should have_selector('title', text: 'Sign in') }
   end
 
   describe "authorization" do
@@ -22,12 +22,12 @@ describe "Authentication" do
 
         describe "visiting the edit page (SETTINGS)" do
             before { visit edit_user_path(user) }
-            it { should have_selector('title', text: 'Log In') }
+            it { should have_selector('title', text: 'Sign In') }
         end
 
         describe "submitting to the update action (SETTINGS)" do
             before { put user_path(user) }
-            specify { response.should redirect_to(log_in_path) }
+            specify { response.should redirect_to(new_user_session_path) }
         end
 
       end
@@ -68,14 +68,14 @@ describe "Authentication" do
 
  describe "login" do
     
-      before { visit log_in_path }
+      before { visit new_user_session_path }
 
     
       describe "with invalid information" do
         
-          before { click_button "Log In" }
+          before { click_button "Sign in" }
 
-          it { should have_selector('h1', text: 'Log In') }
+          it { should have_selector('h1', text: 'Sign in') }
         it { should have_selector('div.alert.alert-error', text: 'Invalid') }
       end
 
@@ -83,13 +83,13 @@ describe "Authentication" do
         let(:user) { FactoryGirl.create(:user) }
         
         before do
-          fill_in "session_email",    with: user.email
-          fill_in "session_password", with: user.password
-          click_button "Log In"
+          fill_in "user_email",    with: user.email
+          fill_in "user_password", with: user.password
+          click_button "Sign in"
           end
 
-          it { should have_link('Log Out', href: log_out_path) }
-          it { should_not have_link('Log In', href: log_in_path) }
+          it { should have_link('Sign out', href: destroy_user_session_path) }
+          it { should_not have_link('Sign up', href: new_user_session_path) }
       end
   end
 

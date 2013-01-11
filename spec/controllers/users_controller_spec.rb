@@ -4,7 +4,15 @@ describe UsersController do
 
   before (:each) do
     @user = FactoryGirl.create(:user)
-    sign_in @user
+    # sign_in @user
+    #go to log in page, fill in the form and log in
+    visit ( new_user_session_path)
+    fill_in('Email', :with => 'test1@example.com')
+    fill_in('Password', :with => 'foobar')
+    click_button('Sign in')
+
+    #also tests FactoryGirl has been set correctly to 
+
   end
 
   describe "GET 'show'" do

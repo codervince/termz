@@ -1,5 +1,3 @@
-# FactoryGirl.reload
-
 FactoryGirl.define do
   
   factory :project do

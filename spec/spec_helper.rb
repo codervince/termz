@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'spork'
+require 'capybara/rspec'
+
 #uncomment the following line to use spork with the debugger
 #require 'spork/ext/ruby-debug'
 
@@ -12,7 +14,14 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'email_spec'
-require 'rspec/autorun'
+
+# require 'rspec/autorun'
+
+# deal with Devise
+  require "rails/application"
+  Spork.trap_method(Rails::Application, :reload_routes!)
+
+
 
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -24,7 +33,7 @@ RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
 
-
+ 
   # ## Mock Framework
   #
   # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -42,14 +51,21 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+
+
+
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+
+   config.include Devise::TestHelpers, :type => :controller
 end
+
 end
 
 Spork.each_run do
   # This code will be run each time you run your specs.
+  # ActiveRecord::Base.establish_connection
 
 end

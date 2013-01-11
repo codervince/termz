@@ -26,9 +26,9 @@ describe "User pages" do
   subject { page }
 
   describe "signup page" do
-    before { visit sign_up_path }
+    before { visit new_user_registration_path }
 
-    it { should have_selector('title', text: 'Termz | Sign Up') }
+    it { should have_selector('title', text: 'Termz | Sign up') }
   end
 
   describe "profile page" do
@@ -41,9 +41,9 @@ describe "User pages" do
 
   describe "signup" do
 
-    before { visit sign_up_path }
+    before { visit new_user_registration_path }
 
-    let(:submit) { "Sign Up" }
+    let(:submit) { "Sign up" }
 
     describe "with invalid information 1" do
         before do 
@@ -60,8 +60,8 @@ describe "User pages" do
     #THIS WORKS IN THE BROWSER BUT NOT HERE - WHY??
     describe "with valid information" do
       before do
-        fill_in :name,         with: "Example User"
         fill_in :email,        with: "user69@example.com"
+        fill_in :name,         with: "Example User"
         fill_in :password,     with: "foobar"
         fill_in :password_confirmation, with: "foobar"
         # choose("user_set_language_id_21")
