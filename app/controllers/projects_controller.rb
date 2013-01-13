@@ -15,8 +15,11 @@ def show
 
     # @translations all translations from all projects
 	@project = Project.find(params[:id])
-	@translations = @project.translations
   @projectlang = Language.find_by_id(@project.source_lang_id).iso_code
+	# @translations = @project.translations
+  #eager? NO!
+  @translations = @project.translations.find(:all, :include => [:owner, :source_lang, :target_lang, :domain]) 
+  
 end
 
 

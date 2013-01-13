@@ -21,7 +21,8 @@ def index
   #display translations for a project
  @user = current_user
  @project = Project.find(params[:project_id])
- @translations = @project.translations 
+ #eager loading?? languages, domains, users 
+ @translations = @project.translations.find(:all, :include => [:owner, :source_lang_id, :target_lang_id, :domain]) 
  #all translations
  # @translations = Translation.order('created_at desc')
 

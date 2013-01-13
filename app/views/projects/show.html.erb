@@ -12,8 +12,7 @@
 </div>
 <div class="buttons">
 	<%= link_to 'New Translation', new_user_project_translation_path(current_user, @project), :class => 'btn btn-primary' %>
-	<%= link_to 'Batch Entry', '#', :class => 'btn btn-primary' %>
-	<%= link_to 'Back to Project', user_project_path(current_user, @project), :class => 'btn btn-primary' %>
+	<%= link_to 'Back to Project', user_projects_path(current_user), :class => 'btn btn-primary' %>
 	<%= link_to 'Get More Translations', "#", :class => 'btn btn-primary' %>
   <%= link_to 'All Translations', "#", :class => 'btn btn-primary' %>
 </div>	
