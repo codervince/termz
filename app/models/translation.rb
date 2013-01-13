@@ -164,6 +164,15 @@ Translation::ISO_3166_SEPARATOR = "-"
  		else
  			raise "Domain error"
  		end		
- 	end	
+ 	end
+
+
+ 	## SEARCH FEATURES
+
+ 	def self.search(term)
+    	where("source_content like :term", term: "%#{term}%")
+  	end
+
+
  	
 end

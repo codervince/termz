@@ -1,13 +1,49 @@
 
+<div id="projectlist">
+		<h1>My projects</h1>
 
-<h1>My projects</h1>
+		<ul class="projects">
+		  <% @projects.each do |project| %>
+		    <li>
+		      <%= link_to project.name, user_project_path(current_user, project) %>
+		    </li>
+		  <% end %>
+		</ul>
 
-<ul class="projects">
-  <% @projects.each do |project| %>
-    <li>
-      <%= link_to project.name, user_project_path(current_user, project) %>
-    </li>
-  <% end %>
-</ul>
+		<p><%= link_to "New Project", new_user_project_path %></p>
 
-<p><%= link_to "New Project", new_user_project_path %></p>
+</div>
+
+<div id="my translations">
+<h1>My Translations</h1>
+SEARCH BOX
+
+LIST OF ALL TRANSLATIONS 
+
+SAME AS PROJECT SEARCH EXCEPT ALL TRANSLATIONS
+<br />
+
+Number of Translations: <%= @allusertrans_count %> 
+
+
+<table id="translations" class="table table-striped">
+<thead>
+  <tr>
+<th>Source Language </th>
+      <th>Target Language</th>
+      <th>Domain</th>
+      <th>Source</th>
+      <th>Owner</th>
+      <th>Created on?</th>
+      <th>Public?</th>
+      <th>Links</th>
+    </tr>
+</thead>
+<tbody>
+  <%= @alltranslations %>
+</tbody>
+</table>
+<br />
+
+
+</div>		

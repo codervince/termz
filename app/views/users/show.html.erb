@@ -1,25 +1,86 @@
 
 <% provide(:title, @user.name) %>
 
+TAB SYSTEM
+SETTINGS  ||  EDIT ||  USER SIGNIN  || PROMO_CONTENT
+  
+<% if current_user == @user %>
+
 <%= t :welcome, :default => "Welcome" %> <%= @user.name %>
 
+<% end %> 
+
+<!-- everyone -->
 
 <div class="row">
   <aside class="span4">
     <section>
+
+          INITIAL Q&As
+          
+          STATS: <br/>
+          MEMBER FOR X MONTHS/YEARS<br/>
+          VISITED<br/>
+          SEEN<br/>
+          PROFILE VIEWS<br/>
+          REPUTATION??<br/>
+          PHOTO<br/>
+          WORKING LANGUAGES<br/>
+          SPECIALIST DOMAINS <br/>
+          SUBSCRIPTION FEE: $xx<br/>
+
       <h1>
+
+  
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
-           	<%= image_tag("#{@language.image_url}") if not @language.nil? %>
+           	<%= image_tag("#{Language.find_by_id(@user.set_language.id).image_url}") if not @language.nil? %>
     </section>
   </aside>
 </div>
 
-SEARCH BOX ALL MY TRANSLATIONS
 
-<h2> My projects </h2>
+<% if current_user == @user %>
+
+ STACKOVERFLOW LIKE TABS (see above)
+
+<h2>
+	<%= t(:myprojects, :default=> "My projects") %> 
+</h2>
 
 <%= render @projects %>
 
-<p><%= link_to "Create New Project", new_user_project_path(@user) %></p>
+
+
+<p>
+    <%= link_to "Create New Project", new_user_project_path(@user) %>
+
+</p>
+
+
+
+<h2> 
+		<%= t(:myprojects, :default=> "Translations") %> 
+</h2>
+
+SEARCH MY TRANSLATIONS
+TABLE MY TRANSlATIONS
+
+<% else %>
+
+    <div id="promocontent">
+        Public content - enter in user own settings page
+        Users will also come here if they click a link on a source_content in pages#search
+        For example:
+         Q&As
+        or content above
+        Top 10 Terms (Segments)
+         Recent 10 Terms (Segments)
+    </div>  
+
+      <%= link_to 'Subscribe to this user', '#', :class => 'btn btn-primary' %>
+      <%= link_to 'Go Back to Previous Page', '#', :class => 'btn btn-primary' %>
+<% end %> 
+
+

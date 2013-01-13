@@ -1,10 +1,16 @@
 <!-- View for index action in user's controleer -->
 <h1>All users</h1>
 
+ONLY VIEW USERS WITH SAME WORKING LANGUAGES 
+DO NOT VIEW ME!
+
+
 <ul class="users">
   <% @users.each do |user| %>
     <li>
-      <%= link_to user.email, user %>
+      <%= link_to user.name, user %>
+      <%= user.setlanguage.iso_code  unless user.setlanguage.nil? %>
+      <%= user.termcount %> terms
     </li>
   <% end %>
 </ul>

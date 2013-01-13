@@ -1,23 +1,37 @@
 
 
 <div class="row">
-  <aside class="span4">
+  <aside class="span6">
     <section>
+      <h2> Project Info </h2>
       <h1>
-        <%= @project.name %>
-        <%= @projectlang %>
+        <%= t(:projectname, :default=> "Project name:") %> <%= @project.name %><br/>
+        <%= t(:projectlang, :default=> "Project language:") %> <%= @projectlang %><br/>
+        <%= t(:projectowner, :default=> "Owner:") %> <%= @owner.name %><br/>
+        <%= t(:projectaccess, :default=> "Access token:") %> <%= @project.access_token %><br/>
+        <%= t(:projectcreated_at, :default=> "Created:") %> <%= @projectcreatedat.strftime("%B %d, %Y") %><br/>
+        <%= t(:projecttranslationscount, :default=> "Number of translations:") %> <%= @project.translations.count %><br/>
+        <% if @project.translations.count >0 %>
+        <%= t(:projectstats_maxtargetlang, 
+                :default=> "Most popular target language:") %> <%= @mostpopulartarlang.name if @mostpopulartarlang %>
+            <br/>
+        <% end %>        
+        
+        <%= t(:projectsubscriberscount, :default=> "Number of subscribers:") %> 0
       </h1>
     </section>
   </aside>
 </div>
+<section>
+<h2> Options </h2>
 <div class="buttons">
-	<%= link_to 'New Translation', new_user_project_translation_path(current_user, @project), :class => 'btn btn-primary' %>
-	<%= link_to 'Back to Project', user_projects_path(current_user), :class => 'btn btn-primary' %>
-	<%= link_to 'Get More Translations', "#", :class => 'btn btn-primary' %>
-  <%= link_to 'All Translations', "#", :class => 'btn btn-primary' %>
+	
+	<%= link_to 'Back to Projects/Translation', user_projects_path(current_user), :class => 'btn btn-primary' %>
+	<%= link_to 'Get more translations', pages_search_path, :class => 'btn btn-primary' %>
+
 </div>	
 
-
+</section>
 
 
 <h2> My Translations for this Project </h2>
@@ -41,17 +55,17 @@ MAXIMUM 1000 then Create New Project
     <%= render @translations %> 
 </tbody>
 </table>
+<br />
+<%= link_to 'New Translation', new_user_project_translation_path(current_user, @project), :class => 'btn btn-small' %>
 
 
-
-
-<br>
+<br />
 
 <div id="translationbatchentry">
 
 <button id="batch">Toggle Translation Batch Entry</button>
 
-<%= render :partial => 'translations/batch' %>
+    <%= render :partial => 'translations/batch' %>
 
 
 <script>

@@ -69,7 +69,12 @@ class User < ActiveRecord::Base
  belongs_to :set_language, :class_name => 'Language'
 
 
+ def termcount
+  self.translations.count
+ end
 
-
+ def setlanguage
+  Language.find_by_id(self.set_language_id) 
+ end 
 
 end

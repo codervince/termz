@@ -22,7 +22,7 @@ def index
  @user = current_user
  @project = Project.find(params[:project_id])
  #eager loading?? languages, domains, users 
- @translations = @project.translations.find(:all, :include => [:owner, :source_lang_id, :target_lang_id, :domain]) 
+ @translations = @project.translations.find(:all, :include => [:owner, :source_lang, :target_lang, :domain]) 
  #all translations
  # @translations = Translation.order('created_at desc')
 
@@ -79,7 +79,21 @@ def new
   # @translations = @project.translations
 
  # @translation = Translation.new
- @languages = Language.all(:order => 'iso_code')
+
+#redisify all Language and Domain stuff
+ @preferedlang = Language.find_by_id(@project.source_lang_id)
+ @slanguages = Language.where("id != ?", @preferedlang.id).order('iso_code asc') 
+ #puts project source in first position
+ @slanguages.unshift(@preferedlang)
+ #also in projec controller
+ @mostpopulartarlang = Language.find_by_id(@project.translations.maximum("source_lang_id"))
+ if @mostpopulartarlang
+    @tlanguages = Language.where("id != ?", @mostpopulartarlang.id).order('iso_code asc')
+    @tlanguages.unshift(@mostpopulartarlang)
+ else
+    @tlanguages = Language.order('iso_code desc')
+ end 
+
 
     respond_to do |format|
       format.html # new.html.erb
@@ -91,11 +105,24 @@ end
 #version 1 - 1 domain per translation
 #version 2 - mutliselect to create X translations of same content, one for each domain
 def create
-
- #from railsrecipes recipe 22 - refactor
-  # @user = current_user
   @user = current_user
   @project = Project.find(params[:project_id])
+  @preferedlang = Language.find_by_id(@project.source_lang_id)
+  @slanguages = Language.where("id != ?", @preferedlang.id).order('iso_code asc') 
+  @slanguages.unshift(@preferedlang)
+ #from railsrecipes recipe 22 - refactor
+  # @user = current_user
+
+
+ @mostpopulartarlang = Language.find_by_id(@project.translations.maximum("source_lang_id"))
+ if @mostpopulartarlang
+    @tlanguages = Language.where("id != ?", @mostpopulartarlang.id).order('iso_code asc')
+    @tlanguages.unshift(@mostpopulartarlang)
+ else
+    @tlanguages = Language.order('iso_code desc')
+ end
+
+
   @translation = @project.translations.build(params[:translation])
   @translation.owner_id = @user.id
 
@@ -118,7 +145,7 @@ def create
   if @translation.save
     flash[:notice] = "Translation was successfully created"
     # redirect_to user_project_translations_path(@user, @project)
-    redirect_to root_path
+    redirect_to user_project_path(current_user, @project)
   else
     render 'new'
   end

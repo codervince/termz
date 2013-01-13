@@ -30,6 +30,7 @@ end
 
  def show
     @user = User.find(params[:id])
+    @userterms = @user.translations.count
     @projects = @user.projects
     @language = Language.find_by_id(@user.set_language_id)
   end

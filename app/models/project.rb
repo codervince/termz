@@ -19,6 +19,7 @@ class Project < ActiveRecord::Base
 
 
   validates :user_id, presence: true
+  validates_uniqueness_of :name, :scope => :user_id
 
   has_many :translations
   
@@ -29,6 +30,9 @@ class Project < ActiveRecord::Base
 
 
   default_scope order: 'projects.created_at DESC' 
+
+
+
 
 
 	private
